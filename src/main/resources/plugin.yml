@@ -1,0 +1,12 @@
+author: ${author}
+name: ${project.artifactId}
+version: '${project.version}'
+main: ${main-paper}
+api-version: '1.20'
+commands:
+  cow:
+    description: "Spawn an exploding cow."
+    usage: "/cow [baby]"
+    aliases: [ cowcannon ]
+    permission: cowcannon.command.cow
+    permission-message: "&cYou do not have permission to spawn an exploding cow."
