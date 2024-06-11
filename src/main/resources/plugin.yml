@@ -6,7 +6,7 @@ api-version: '1.20'
 commands:
   cow:
     description: "Spawn an exploding cow."
-    usage: "/cow [baby]"
+    usage: "/cow [baby/set]"
     aliases: [ cowcannon ]
     permission: cowcannon.command.cow
     permission-message: "&cYou do not have permission to spawn an exploding cow."

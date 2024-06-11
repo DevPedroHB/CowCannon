@@ -1,7 +1,7 @@
-package dev.pedrohb.cowcannon.Listeners;
+package dev.pedrohb.cowcannon.listeners;
 
+import dev.pedrohb.cowcannon.configs.Settings;
 import org.bukkit.Material;
-import org.bukkit.entity.Cow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -41,16 +41,14 @@ public class EntityListener implements Listener {
       player.sendMessage("You now have the perm.");
     }*/
 
-    if (entity instanceof Cow && entity.hasMetadata("CowCannon") && player.getItemInHand().getType() == Material.BUCKET) {
+    if (entity.getType() == Settings.getInstance().getEntityType() && entity.hasMetadata("CowCannon") && player.getItemInHand().getType() == Material.BUCKET) {
       if (!player.hasPermission("cowcannon.cow.use")) {
         player.sendMessage("You don't have permission to milk cows.");
 
         return;
       }
 
-      Cow cow = (Cow) event.getRightClicked();
-
-      cow.getWorld().createExplosion(cow.getLocation(), 2.F);
+      entity.getWorld().createExplosion(entity.getLocation(), 2.F);
     }
   }
 }

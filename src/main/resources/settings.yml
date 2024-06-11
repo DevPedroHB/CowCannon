@@ -1,0 +1,4 @@
+# Exploding animal settings.
+explosion:
+  # The entity type to explode.
+  entity-type: COW

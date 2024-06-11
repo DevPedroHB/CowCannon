@@ -6,7 +6,7 @@
 
   <groupId>dev.pedrohb</groupId>
   <artifactId>CowCannon</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <packaging>jar</packaging>
 
   <name>CowCannon</name>
@@ -40,7 +40,7 @@
               <goal>shade</goal>
             </goals>
             <configuration>
-              <outputFile>C:\www\jars\minecraft\${project.artifactId}.jar</outputFile>
+              <outputFile>C:\www\jars\minecraft\${project.artifactId}-${project.version}.jar</outputFile>
             </configuration>
           </execution>
         </executions>

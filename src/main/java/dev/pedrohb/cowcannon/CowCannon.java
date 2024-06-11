@@ -1,7 +1,8 @@
 package dev.pedrohb.cowcannon;
 
-import dev.pedrohb.cowcannon.Commands.CowCommand;
-import dev.pedrohb.cowcannon.Listeners.EntityListener;
+import dev.pedrohb.cowcannon.commands.CowCommand;
+import dev.pedrohb.cowcannon.configs.Settings;
+import dev.pedrohb.cowcannon.listeners.EntityListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class CowCannon extends JavaPlugin {
@@ -15,8 +16,11 @@ public final class CowCannon extends JavaPlugin {
     // Events
     getServer().getPluginManager().registerEvents(new EntityListener(), this);
 
-    // Commands
+    // commands
     getCommand("cow").setExecutor(new CowCommand());
+
+    // configs
+    Settings.getInstance().load();
 
     getLogger().info("CowCannon has ben enabled.");
   }
