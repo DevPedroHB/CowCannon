@@ -2,6 +2,7 @@ package dev.pedrohb.cowcannon;
 
 import dev.pedrohb.cowcannon.commands.ButterflyCommand;
 import dev.pedrohb.cowcannon.commands.CowCommand;
+import dev.pedrohb.cowcannon.commands.DisplayEntityCommand;
 import dev.pedrohb.cowcannon.configs.Settings;
 import dev.pedrohb.cowcannon.listeners.EntityListener;
 import dev.pedrohb.cowcannon.tasks.ButterflyTask;
@@ -24,6 +25,7 @@ public final class CowCannon extends JavaPlugin {
     // commands
     getCommand("cow").setExecutor(new CowCommand());
     getCommand("butterfly").setExecutor(new ButterflyCommand());
+    getCommand("displayentity").setExecutor(new DisplayEntityCommand());
 
     // configs
     Settings.getInstance().load();

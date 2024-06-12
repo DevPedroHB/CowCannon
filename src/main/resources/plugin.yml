@@ -6,7 +6,7 @@ api-version: '1.20'
 commands:
   cow:
     description: "Spawn an exploding cow."
-    usage: "/cow [baby/set]"
+    usage: "/cow [baby/set] <entity>"
     aliases: [ cowcannon ]
     permission: cowcannon.command.cow
     permission-message: "You do not have permission to run this command."
@@ -15,4 +15,10 @@ commands:
     usage: "/butterfly"
     aliases: [ butterflywings ]
     permission: cowcannon.command.butterfly
+    permission-message: "You do not have permission to run this command."
+  displayentity:
+    description: "Spawns a display entity."
+    usage: "/displayentity [item/block/text]"
+    aliases: [ de ]
+    permission: cowcannon.command.displayentity
     permission-message: "You do not have permission to run this command."
