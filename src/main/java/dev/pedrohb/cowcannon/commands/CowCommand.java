@@ -22,6 +22,9 @@ import java.util.stream.Collectors;
 
 public class CowCommand implements CommandExecutor, TabExecutor {
 
+  private static final Settings settings = Settings.getInstance();
+  private static final CowCannon cowCannon = CowCannon.getInstance();
+
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
 
@@ -30,6 +33,8 @@ public class CowCommand implements CommandExecutor, TabExecutor {
 
       return true;
     }
+
+    Player player = (Player) sender;
 
     if (args.length > 1) {
       if (args[0].equalsIgnoreCase("set")) {
@@ -49,7 +54,7 @@ public class CowCommand implements CommandExecutor, TabExecutor {
           return true;
         }
 
-        Settings.getInstance().setEntityType(type);
+        settings.setEntityType(type);
 
         return true;
       }
@@ -57,8 +62,7 @@ public class CowCommand implements CommandExecutor, TabExecutor {
       return false;
     }
 
-    Player player = (Player) sender;
-    LivingEntity entity = (LivingEntity) player.getWorld().spawnEntity(player.getLocation(), Settings.getInstance().getEntityType());
+    LivingEntity entity = (LivingEntity) player.getWorld().spawnEntity(player.getLocation(), settings.getEntityType());
 
     if (args.length == 1 && args[0].equalsIgnoreCase("baby")) {
       if (entity instanceof Ageable) {
@@ -70,7 +74,7 @@ public class CowCommand implements CommandExecutor, TabExecutor {
       }
     }
 
-    entity.setMetadata("CowCannon", new FixedMetadataValue(CowCannon.getInstance(), true));
+    entity.setMetadata("CowCannon", new FixedMetadataValue(cowCannon, true));
     entity.setCustomName(ChatColor.RED + "Milk Me");
     entity.setCustomNameVisible(true);
 

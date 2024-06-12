@@ -40,7 +40,7 @@
               <goal>shade</goal>
             </goals>
             <configuration>
-              <outputFile>C:\www\jars\minecraft\${project.artifactId}-${project.version}.jar</outputFile>
+              <outputFile>C:\www\jars\minecraft\${project.artifactId}.jar</outputFile>
             </configuration>
           </execution>
         </executions>

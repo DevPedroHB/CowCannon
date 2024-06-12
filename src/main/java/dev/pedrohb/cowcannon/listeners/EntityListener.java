@@ -8,15 +8,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.permissions.PermissionAttachment;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 public class EntityListener implements Listener {
 
-  private final Map<UUID, PermissionAttachment> permissions = new HashMap<>();
+  private static final Settings settings = Settings.getInstance();
+
+//  private final Map<UUID, PermissionAttachment> permissions = new HashMap<>();
 
   @EventHandler
   public void onEntityRightClick(PlayerInteractEntityEvent event) {
@@ -41,7 +38,7 @@ public class EntityListener implements Listener {
       player.sendMessage("You now have the perm.");
     }*/
 
-    if (entity.getType() == Settings.getInstance().getEntityType() && entity.hasMetadata("CowCannon") && player.getItemInHand().getType() == Material.BUCKET) {
+    if (entity.getType() == settings.getEntityType() && entity.hasMetadata("CowCannon") && player.getItemInHand().getType() == Material.BUCKET) {
       if (!player.hasPermission("cowcannon.cow.use")) {
         player.sendMessage("You don't have permission to milk cows.");
 
