@@ -22,3 +22,9 @@ commands:
     aliases: [ de ]
     permission: cowcannon.command.displayentity
     permission-message: "You do not have permission to run this command."
+  customitem:
+    description: "Gives you a custom item."
+    usage: "/customitem"
+    aliases: [ itemcustom ]
+    permission: cowcannon.command.customitem
+    permission-message: "You do not have permission to run this command."

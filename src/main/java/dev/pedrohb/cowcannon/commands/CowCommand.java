@@ -2,6 +2,7 @@ package dev.pedrohb.cowcannon.commands;
 
 import dev.pedrohb.cowcannon.CowCannon;
 import dev.pedrohb.cowcannon.configs.Settings;
+import dev.pedrohb.cowcannon.utils.Keys;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,7 +12,7 @@ import org.bukkit.entity.Ageable;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.metadata.FixedMetadataValue;
+import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -74,7 +75,7 @@ public class CowCommand implements CommandExecutor, TabExecutor {
       }
     }
 
-    entity.setMetadata("CowCannon", new FixedMetadataValue(cowCannon, true));
+    entity.getPersistentDataContainer().set(Keys.CUSTOM_COW, PersistentDataType.BOOLEAN, true);
     entity.setCustomName(ChatColor.RED + "Milk Me");
     entity.setCustomNameVisible(true);
 
