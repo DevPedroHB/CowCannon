@@ -28,3 +28,9 @@ commands:
     aliases: [ itemcustom ]
     permission: cowcannon.command.customitem
     permission-message: "You do not have permission to run this command."
+  gui:
+    description: "Opens a GUI."
+    usage: "/gui"
+    aliases: [ ]
+    permission: cowcannon.command.gui
+    permission-message: "You do not have permission to run this command."
