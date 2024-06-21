@@ -4,6 +4,7 @@ import dev.pedrohb.cowcannon.commands.*;
 import dev.pedrohb.cowcannon.configs.Settings;
 import dev.pedrohb.cowcannon.listeners.EntityListener;
 import dev.pedrohb.cowcannon.listeners.GuiListener;
+import dev.pedrohb.cowcannon.tasks.Board;
 import dev.pedrohb.cowcannon.tasks.ButterflyTask;
 import org.bukkit.scheduler.BukkitTask;
 import org.mineacademy.fo.menu.button.ButtonReturnBack;
@@ -12,7 +13,8 @@ import org.mineacademy.fo.remain.CompMaterial;
 
 public final class CowCannon extends SimplePlugin {
 
-  private BukkitTask task;
+  private BukkitTask task1;
+  private BukkitTask task2;
 
   public static CowCannon getInstance() {
     return (CowCannon) SimplePlugin.getInstance();
@@ -37,15 +39,20 @@ public final class CowCannon extends SimplePlugin {
     Settings.getInstance().load();
 
     // tasks
-    task = getServer().getScheduler().runTaskTimer(this, ButterflyTask.getInstance(), 0, 1);
+    task1 = getServer().getScheduler().runTaskTimer(this, ButterflyTask.getInstance(), 0, 1);
+    task2 = getServer().getScheduler().runTaskTimer(this, Board.getInstance(), 0, 20);
 
     getLogger().info("CowCannon has ben enabled.");
   }
 
   @Override
   public void onPluginStop() {
-    if (task != null && !task.isCancelled()) {
-      task.cancel();
+    if (task1 != null && !task1.isCancelled()) {
+      task1.cancel();
+    }
+
+    if (task2 != null && !task2.isCancelled()) {
+      task2.cancel();
     }
 
     getLogger().info("CowCannon has ben disabled.");

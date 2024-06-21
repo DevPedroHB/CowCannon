@@ -1,5 +1,6 @@
 package dev.pedrohb.cowcannon.tasks;
 
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -13,15 +14,12 @@ import java.util.UUID;
 
 public class ButterflyTask implements Runnable {
 
+  @Getter
   private static final ButterflyTask instance = new ButterflyTask();
 
   private final Set<UUID> viewingWings = new HashSet<>();
 
   private ButterflyTask() {
-  }
-
-  public static ButterflyTask getInstance() {
-    return instance;
   }
 
   @Override
