@@ -12,10 +12,11 @@
   <name>CowCannon</name>
 
   <properties>
+    <author>PedroHB</author>
+    <main.paper>dev.pedrohb.cowcannon.CowCannon</main.paper>
     <java.version>1.8</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <author>PedroHB</author>
-    <main-paper>dev.pedrohb.cowcannon.CowCannon</main-paper>
+    <foundation.path>com.github.kangarko</foundation.path>
   </properties>
 
   <build>
@@ -44,6 +45,20 @@
             </configuration>
           </execution>
         </executions>
+        <configuration>
+          <createDependencyReducedPom>false</createDependencyReducedPom>
+          <artifactSet>
+            <includes>
+              <include>${foundation.path}:Foundation*</include>
+            </includes>
+          </artifactSet>
+          <relocations>
+            <relocation>
+              <pattern>org.mineacademy.fo</pattern>
+              <shadedPattern>dev.pedrohb.cowcannon.lib</shadedPattern>
+            </relocation>
+          </relocations>
+        </configuration>
       </plugin>
     </plugins>
     <resources>
@@ -63,6 +78,10 @@
       <id>sonatype</id>
       <url>https://oss.sonatype.org/content/groups/public/</url>
     </repository>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
   </repositories>
 
   <dependencies>
@@ -71,6 +90,11 @@
       <artifactId>paper-api</artifactId>
       <version>1.20.6-R0.1-SNAPSHOT</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>${foundation.path}</groupId>
+      <artifactId>Foundation</artifactId>
+      <version>LATEST</version>
     </dependency>
   </dependencies>
 </project>

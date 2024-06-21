@@ -1,7 +1,7 @@
 author: ${author}
 name: ${project.artifactId}
 version: '${project.version}'
-main: ${main-paper}
+main: ${main.paper}
 api-version: '1.20'
 commands:
   cow:
