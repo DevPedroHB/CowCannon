@@ -10,47 +10,37 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.persistence.PersistentDataContainer;
 
-public class EntityListener implements Listener {
-
-  private static final Settings settings = Settings.getInstance();
-
-//  private final Map<UUID, PermissionAttachment> permissions = new HashMap<>();
+public final class EntityListener implements Listener {
 
   @EventHandler
   public void onEntityRightClick(PlayerInteractEntityEvent event) {
-    if (event.getHand() != EquipmentSlot.HAND) {
-      return;
+    try {
+      if (event.getHand() != EquipmentSlot.HAND) {
+        return;
+      }
+    } catch (final Throwable t) {
+      // Ignore
     }
 
-    Player player = event.getPlayer();
-    Entity entity = event.getRightClicked();
-
-    /*if (permissions.containsKey(player.getUniqueId())) {
-      PermissionAttachment permission = permissions.remove(player.getUniqueId());
-
-      player.removeAttachment(permission);
-
-      player.sendMessage("You no longer have the perm.");
-    } else {
-      PermissionAttachment permission = player.addAttachment(CowCannon.getInstance(), "cowcannon.cow", true);
-
-      permissions.put(player.getUniqueId(), permission);
-
-      player.sendMessage("You now have the perm.");
-    }*/
+    final Player player = event.getPlayer();
+    final Entity entity = event.getRightClicked();
 
     if (player.getItemInHand().getItemMeta() != null) {
-      PersistentDataContainer entityContainer = entity.getPersistentDataContainer();
-      PersistentDataContainer handItemContainer = player.getItemInHand().getItemMeta().getPersistentDataContainer();
+      try {
+        final PersistentDataContainer entityContainer = entity.getPersistentDataContainer();
+        final PersistentDataContainer handItemContainer = player.getItemInHand().getItemMeta().getPersistentDataContainer();
 
-      if (entity.getType() == settings.getEntityType() && entityContainer.has(Keys.CUSTOM_COW) && handItemContainer.has(Keys.CUSTOM_BUCKET)) {
-        if (!player.hasPermission("cowcannon.cow.use")) {
-          player.sendMessage("You don't have permission to milk cows.");
+        if (entity.getType() == Settings.getInstance().getExplodingType() && entityContainer.has(Keys.CUSTOM_COW) && handItemContainer.has(Keys.CUSTOM_BUCKET)) {
+          if (!player.hasPermission("cowcannon.cow.use")) {
+            player.sendMessage("You don't have permission to milk cows ;)");
 
-          return;
+            return;
+          }
+
+          entity.getWorld().createExplosion(entity.getLocation(), 2.5F);
         }
-
-        entity.getWorld().createExplosion(entity.getLocation(), 2.F);
+      } catch (final LinkageError err) {
+        // Ignore
       }
     }
   }

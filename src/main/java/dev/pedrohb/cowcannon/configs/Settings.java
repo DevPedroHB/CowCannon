@@ -1,25 +1,28 @@
 package dev.pedrohb.cowcannon.configs;
 
 import dev.pedrohb.cowcannon.CowCannon;
+import lombok.Getter;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 
 import java.io.File;
+import java.util.List;
 
-public class Settings {
+public final class Settings {
 
+  @Getter
   private final static Settings instance = new Settings();
-
   private File file;
   private YamlConfiguration config;
-
-  private EntityType entityType;
+  
+  @Getter
+  private EntityType explodingType;
+  @Getter
+  private List<String> headerLines;
+  @Getter
+  private List<String> footerLines;
 
   private Settings() {
-  }
-
-  public static Settings getInstance() {
-    return instance;
   }
 
   public void load() {
@@ -31,22 +34,28 @@ public class Settings {
 
     config = new YamlConfiguration();
 
-    config.options().parseComments(true);
+    try {
+      config.options().parseComments(true);
+    } catch (Throwable t) {
+      // Unsupported
+    }
 
     try {
       config.load(file);
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (Exception ex) {
+      ex.printStackTrace();
     }
 
-    entityType = EntityType.valueOf(config.getString("explosion.entity-type"));
+    explodingType = EntityType.valueOf(config.getString("explosion.entity-type"));
+    headerLines = config.getStringList("tablist.header");
+    footerLines = config.getStringList("tablist.hooter");
   }
 
   public void save() {
     try {
       config.save(file);
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (Exception ex) {
+      ex.printStackTrace();
     }
   }
 
@@ -56,13 +65,9 @@ public class Settings {
     save();
   }
 
-  public EntityType getEntityType() {
-    return entityType;
-  }
+  public void setExplodingType(EntityType explodingType) {
+    this.explodingType = explodingType;
 
-  public void setEntityType(EntityType entityType) {
-    this.entityType = entityType;
-
-    set("explosion.entity-type", entityType.name());
+    set("explosion.entity-type", explodingType.name());
   }
 }

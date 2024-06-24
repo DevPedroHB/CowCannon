@@ -8,33 +8,31 @@ import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
 
-public class Board implements Runnable {
+public final class ScoreboardTask implements Runnable {
 
   @Getter
-  private final static Board instance = new Board();
-  private static final CowCannon cowCannon = CowCannon.getInstance();
+  private final static ScoreboardTask instance = new ScoreboardTask();
 
-  private Board() {
+  private ScoreboardTask() {
   }
 
   @Override
   public void run() {
     for (Player player : Bukkit.getOnlinePlayers()) {
-      if (player.getScoreboard() != null && player.getScoreboard().getObjective(cowCannon.getName()) != null) {
+      if (player.getScoreboard() != null && player.getScoreboard().getObjective(CowCannon.getInstance().getName()) != null) {
         updateScoreboard(player);
       } else {
-        createScoreboard(player);
+        createNewScoreboard(player);
       }
     }
   }
 
-  private void createScoreboard(Player player) {
+  private void createNewScoreboard(Player player) {
     Scoreboard scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
-    Objective objective = scoreboard.registerNewObjective(cowCannon.getName(), "dummy");
+    Objective objective = scoreboard.registerNewObjective(CowCannon.getInstance().getName(), "yummy");
 
     objective.setDisplaySlot(DisplaySlot.SIDEBAR);
     objective.setDisplayName(ChatColor.RED + "" + ChatColor.BOLD + "ATTENTION FOLKS");
-
     objective.getScore(ChatColor.WHITE + " ").setScore(8);
     objective.getScore(ChatColor.WHITE + "You're watching world's").setScore(7);
     objective.getScore(ChatColor.WHITE + "best Minecraft plugin.").setScore(6);
@@ -43,7 +41,6 @@ public class Board implements Runnable {
     objective.getScore(ChatColor.WHITE + "Please do NOT visit").setScore(3);
     objective.getScore(ChatColor.RED + "mineacademy.org/project-orion").setScore(2);
     objective.getScore(ChatColor.GREEN + " ").setScore(1);
-    //objective.getScore(ChatColor.WHITE + "Walked: 0cm").setScore(0);
 
     Team team1 = scoreboard.registerNewTeam("team1");
     String teamKey = ChatColor.WHITE.toString();
@@ -54,7 +51,7 @@ public class Board implements Runnable {
 
     objective.getScore(teamKey).setScore(0);
 
-    Objective objectiveHealth = scoreboard.registerNewObjective(cowCannon.getName() + "_health", Criterias.HEALTH);
+    Objective objectiveHealth = scoreboard.registerNewObjective(CowCannon.getInstance().getName() + "_health", Criterias.HEALTH);
 
     objectiveHealth.setDisplayName(ChatColor.RED + "❤");
     objectiveHealth.setDisplaySlot(DisplaySlot.BELOW_NAME);

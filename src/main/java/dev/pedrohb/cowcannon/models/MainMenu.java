@@ -53,7 +53,6 @@ public final class MainMenu extends Menu {
   }
 
   private class PreferencesMenu extends Menu {
-
     @Position(start = StartPosition.CENTER, value = -1)
     private final Button clearInventoryButton;
     @Position(start = StartPosition.CENTER, value = 1)
@@ -99,7 +98,6 @@ public final class MainMenu extends Menu {
 
     @Override
     protected void onPostDisplay(Player viewer) {
-
       animate(20, new MenuRunnable() {
         boolean toggle = true;
 
@@ -123,7 +121,6 @@ public final class MainMenu extends Menu {
   }
 
   private class SelectMobEggsMenu extends MenuPagged<EntityType> {
-
     SelectMobEggsMenu() {
       super(MainMenu.this, Arrays.asList(EntityType.values())
           .stream()
@@ -131,7 +128,6 @@ public final class MainMenu extends Menu {
           .collect(Collectors.toList()));
 
       setTitle("&8Select Mob Eggs");
-      //setSize(9 * 4);
     }
 
     @Override
@@ -149,7 +145,6 @@ public final class MainMenu extends Menu {
   }
 
   private class GetItemsMenu extends MenuContainer {
-
     GetItemsMenu() {
       super(MainMenu.this);
 
@@ -159,8 +154,9 @@ public final class MainMenu extends Menu {
 
     @Override
     protected ItemStack getDropAt(int slot) {
-      if (slot < 9)
+      if (slot < 9) {
         return ItemCreator.ofPotion(PotionEffectType.INVISIBILITY).make();
+      }
 
       return NO_ITEM;
     }

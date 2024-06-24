@@ -12,11 +12,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-public class ButterflyTask implements Runnable {
+public final class ButterflyTask implements Runnable {
 
   @Getter
   private static final ButterflyTask instance = new ButterflyTask();
-
   private final Set<UUID> viewingWings = new HashSet<>();
 
   private ButterflyTask() {
@@ -24,7 +23,7 @@ public class ButterflyTask implements Runnable {
 
   @Override
   public void run() {
-    for (Player player : Bukkit.getOnlinePlayers()) {
+    for (final Player player : Bukkit.getOnlinePlayers()) {
       if (hasPlayer(player.getUniqueId())) {
         generateButterflyWingEffect(player);
       }
@@ -47,7 +46,6 @@ public class ButterflyTask implements Runnable {
       final double radius = circle - Math.cos(circlesAmount * radians);
       final double x = Math.sin(radians) * radius;
       final double z = Math.cos(radians) * radius;
-
       final Vector particleLocation = new Vector(x, 0, z);
 
       rotateAroundAxisX(particleLocation, -90);

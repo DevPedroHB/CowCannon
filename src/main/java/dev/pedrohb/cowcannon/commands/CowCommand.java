@@ -20,20 +20,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CowCommand implements CommandExecutor, TabExecutor {
-
-  private static final Settings settings = Settings.getInstance();
+public final class CowCommand implements CommandExecutor, TabExecutor {
 
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-
     if (!(sender instanceof Player)) {
       sender.sendMessage("Only players can use this command.");
 
       return true;
     }
-
-    Player player = (Player) sender;
 
     if (args.length > 1) {
       if (args[0].equalsIgnoreCase("set")) {
@@ -41,19 +36,20 @@ public class CowCommand implements CommandExecutor, TabExecutor {
 
         try {
           type = EntityType.valueOf(args[1].toUpperCase());
-        } catch (IllegalArgumentException e) {
-          sender.sendMessage(ChatColor.RED + "Invalid entity type: " + args[1]);
+        } catch (IllegalArgumentException ex) {
+          sender.sendMessage("Invalid entity type: " + args[1]);
 
           return true;
         }
 
         if (!type.isSpawnable() || !type.isAlive()) {
-          sender.sendMessage(ChatColor.RED + "You can only use living entities.");
+          sender.sendMessage("You can only use living entities!");
 
           return true;
         }
 
-        settings.setEntityType(type);
+        Settings.getInstance().setExplodingType(type);
+        sender.sendMessage(ChatColor.GREEN + "Set exploding type to " + type);
 
         return true;
       }
@@ -61,19 +57,25 @@ public class CowCommand implements CommandExecutor, TabExecutor {
       return false;
     }
 
-    LivingEntity entity = (LivingEntity) player.getWorld().spawnEntity(player.getLocation(), settings.getEntityType());
+    Player player = (Player) sender;
+    LivingEntity entity = (LivingEntity) player.getWorld().spawnEntity(player.getLocation(), Settings.getInstance().getExplodingType());
 
     if (args.length == 1 && args[0].equalsIgnoreCase("baby")) {
       if (entity instanceof Ageable) {
         ((Ageable) entity).setBaby();
       } else {
-        sender.sendMessage(ChatColor.RED + "This entity cannot be a baby.");
+        sender.sendMessage("This entity cannot be a baby!");
 
         return true;
       }
     }
 
-    entity.getPersistentDataContainer().set(Keys.CUSTOM_COW, PersistentDataType.BOOLEAN, true);
+    try {
+      entity.getPersistentDataContainer().set(Keys.CUSTOM_COW, PersistentDataType.BOOLEAN, true);
+    } catch (LinkageError t) {
+      // have an alternative code for old MC version
+    }
+
     entity.setCustomName(ChatColor.RED + "Milk Me");
     entity.setCustomNameVisible(true);
 
@@ -95,6 +97,6 @@ public class CowCommand implements CommandExecutor, TabExecutor {
           .collect(Collectors.toList());
     }
 
-    return new ArrayList<>();
+    return new ArrayList<>(); // null = all player names
   }
 }

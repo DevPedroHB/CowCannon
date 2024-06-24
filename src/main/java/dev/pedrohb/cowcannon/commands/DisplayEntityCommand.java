@@ -21,7 +21,6 @@ public class DisplayEntityCommand implements CommandExecutor, TabExecutor {
 
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-
     if (!(sender instanceof Player)) {
       sender.sendMessage("Only players can use this command.");
 
@@ -43,19 +42,6 @@ public class DisplayEntityCommand implements CommandExecutor, TabExecutor {
         item.setBillboard(Display.Billboard.CENTER); // auto-rotate
         item.setTransformation(transformation);
         transformation.getScale().set(2D);
-
-        //item.setViewRange(0.1F); // 0.1 = 16 blocks
-        //item.setShadowRadius(0.3F); // 1 = 1 block
-        //item.setShadowRadius(1F);
-        //item.setShadowStrength(5F); // >= 5F = "black hole"
-        //item.setDisplayWidth(50F);
-        //item.setDisplayHeight(50F);
-        //item.setGlowColorOverride(Color.RED); // only works for scoreboard
-        //item.setBrightness(new Brightness(15, 15)); // 0-15, will override auto brightness
-
-        //transformation.getLeftRotation().x = 1; // 1 to -1, forward/backward lay
-        //transformation.getLeftRotation().y = 0.5F; // 1 to -1, horizontal rotation
-        //transformation.getLeftRotation().z = -1F; // 1 to -1, right/left tilt
       }
 
       if (args[0].equalsIgnoreCase("block")) {
@@ -72,10 +58,6 @@ public class DisplayEntityCommand implements CommandExecutor, TabExecutor {
 
         text.setText(ChatColor.BOLD + "Warning: \n" + ChatColor.GREEN + "You Are An Idiot");
         text.setBillboard(Display.Billboard.CENTER);
-
-        //text.setBackgroundColor(Color.RED);
-        //text.setLineWidth(50);
-        //text.setTextOpacity(Byte.MAX_VALUE); // transparent
       }
     } catch (final Throwable t) {
       sender.sendMessage("Error: " + t.getMessage());

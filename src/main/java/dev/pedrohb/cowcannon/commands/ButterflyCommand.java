@@ -1,20 +1,16 @@
 package dev.pedrohb.cowcannon.commands;
 
 import dev.pedrohb.cowcannon.tasks.ButterflyTask;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class ButterflyCommand implements CommandExecutor {
-
-  private static final ButterflyTask butterflyTask = ButterflyTask.getInstance();
+public final class ButterflyCommand implements CommandExecutor {
 
   @Override
-  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-
+  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
     if (!(sender instanceof Player)) {
       sender.sendMessage("Only players can use this command.");
 
@@ -22,15 +18,16 @@ public class ButterflyCommand implements CommandExecutor {
     }
 
     Player player = (Player) sender;
+    ButterflyTask instance = ButterflyTask.getInstance();
 
-    if (butterflyTask.hasPlayer(player.getUniqueId())) {
-      butterflyTask.removePlayer(player.getUniqueId());
+    if (instance.hasPlayer(player.getUniqueId())) {
+      instance.removePlayer(player.getUniqueId());
 
-      player.sendMessage(ChatColor.RED + "You are no longer viewing butterfly wings.");
+      player.sendMessage("You are no longer viewing butterfly wings.");
     } else {
-      butterflyTask.addPlayer(player.getUniqueId());
+      instance.addPlayer(player.getUniqueId());
 
-      player.sendMessage(ChatColor.GREEN + "You are now viewing butterfly wings.");
+      player.sendMessage("You are now viewing butterfly wings.");
     }
 
     return true;
