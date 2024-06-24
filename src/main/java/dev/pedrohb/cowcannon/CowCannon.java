@@ -2,6 +2,7 @@ package dev.pedrohb.cowcannon;
 
 import dev.pedrohb.cowcannon.commands.*;
 import dev.pedrohb.cowcannon.configs.Settings;
+import dev.pedrohb.cowcannon.listeners.ChatListener;
 import dev.pedrohb.cowcannon.listeners.EntityListener;
 import dev.pedrohb.cowcannon.listeners.GuiListener;
 import dev.pedrohb.cowcannon.listeners.LaserPointerListener;
@@ -32,6 +33,7 @@ public final class CowCannon extends SimplePlugin {
     getServer().getPluginManager().registerEvents(new EntityListener(), this);
     getServer().getPluginManager().registerEvents(new GuiListener(), this);
     getServer().getPluginManager().registerEvents(new LaserPointerListener(), this);
+    getServer().getPluginManager().registerEvents(new ChatListener(), this);
 
     // commands
     getCommand("cow").setExecutor(new CowCommand());

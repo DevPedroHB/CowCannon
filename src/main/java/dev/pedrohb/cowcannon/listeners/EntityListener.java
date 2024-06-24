@@ -2,6 +2,11 @@ package dev.pedrohb.cowcannon.listeners;
 
 import dev.pedrohb.cowcannon.configs.Settings;
 import dev.pedrohb.cowcannon.utils.Keys;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -24,6 +29,17 @@ public final class EntityListener implements Listener {
 
     final Player player = event.getPlayer();
     final Entity entity = event.getRightClicked();
+
+    player.sendMessage(Component
+        .text("Hello, click me!")
+        .color(NamedTextColor.RED)
+        .decorate(TextDecoration.BOLD, TextDecoration.UNDERLINED)
+        .clickEvent(ClickEvent.runCommand("/help"))
+        .hoverEvent(HoverEvent.showText(Component.text("Hello, \nI am a cow!")))
+        .append(Component.keybind("key.jump")
+            .color(NamedTextColor.LIGHT_PURPLE)
+            .decoration(TextDecoration.BOLD, true))
+    );
 
     if (player.getItemInHand().getItemMeta() != null) {
       try {
