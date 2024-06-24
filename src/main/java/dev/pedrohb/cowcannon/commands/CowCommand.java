@@ -1,6 +1,5 @@
 package dev.pedrohb.cowcannon.commands;
 
-import dev.pedrohb.cowcannon.CowCannon;
 import dev.pedrohb.cowcannon.configs.Settings;
 import dev.pedrohb.cowcannon.utils.Keys;
 import org.bukkit.ChatColor;
@@ -24,7 +23,6 @@ import java.util.stream.Collectors;
 public class CowCommand implements CommandExecutor, TabExecutor {
 
   private static final Settings settings = Settings.getInstance();
-  private static final CowCannon cowCannon = CowCannon.getInstance();
 
   @Override
   public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {

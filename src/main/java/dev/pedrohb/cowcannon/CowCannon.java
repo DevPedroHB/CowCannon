@@ -4,6 +4,7 @@ import dev.pedrohb.cowcannon.commands.*;
 import dev.pedrohb.cowcannon.configs.Settings;
 import dev.pedrohb.cowcannon.listeners.EntityListener;
 import dev.pedrohb.cowcannon.listeners.GuiListener;
+import dev.pedrohb.cowcannon.models.CustomRecipe;
 import dev.pedrohb.cowcannon.tasks.Board;
 import dev.pedrohb.cowcannon.tasks.ButterflyTask;
 import org.bukkit.scheduler.BukkitTask;
@@ -37,6 +38,9 @@ public final class CowCannon extends SimplePlugin {
 
     // configs
     Settings.getInstance().load();
+
+    // recipes
+    CustomRecipe.register();
 
     // tasks
     task1 = getServer().getScheduler().runTaskTimer(this, ButterflyTask.getInstance(), 0, 1);
