@@ -2,6 +2,7 @@ package dev.pedrohb.cowcannon;
 
 import dev.pedrohb.cowcannon.commands.*;
 import dev.pedrohb.cowcannon.configs.Settings;
+import dev.pedrohb.cowcannon.hooks.ProtocolLibHook;
 import dev.pedrohb.cowcannon.listeners.ChatListener;
 import dev.pedrohb.cowcannon.listeners.EntityListener;
 import dev.pedrohb.cowcannon.listeners.GuiListener;
@@ -10,6 +11,7 @@ import dev.pedrohb.cowcannon.models.CustomRecipe;
 import dev.pedrohb.cowcannon.tasks.ButterflyTask;
 import dev.pedrohb.cowcannon.tasks.LaserPointerTask;
 import dev.pedrohb.cowcannon.tasks.ScoreboardTask;
+import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitTask;
 import org.mineacademy.fo.menu.button.ButtonReturnBack;
 import org.mineacademy.fo.plugin.SimplePlugin;
@@ -47,6 +49,11 @@ public final class CowCannon extends SimplePlugin {
 
     // recipes
     CustomRecipe.register();
+
+    // hooks
+    if (Bukkit.getPluginManager().getPlugin("ProtocolLib") != null) {
+      ProtocolLibHook.register();
+    }
 
     // tasks
     butterflyTask = getServer().getScheduler().runTaskTimer(this, ButterflyTask.getInstance(), 0, 1);
