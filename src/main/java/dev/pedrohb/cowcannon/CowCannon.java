@@ -4,9 +4,11 @@ import dev.pedrohb.cowcannon.commands.*;
 import dev.pedrohb.cowcannon.configs.Settings;
 import dev.pedrohb.cowcannon.listeners.EntityListener;
 import dev.pedrohb.cowcannon.listeners.GuiListener;
+import dev.pedrohb.cowcannon.listeners.LaserPointerListener;
 import dev.pedrohb.cowcannon.models.CustomRecipe;
 import dev.pedrohb.cowcannon.tasks.Board;
 import dev.pedrohb.cowcannon.tasks.ButterflyTask;
+import dev.pedrohb.cowcannon.tasks.LaserPointerTask;
 import org.bukkit.scheduler.BukkitTask;
 import org.mineacademy.fo.menu.button.ButtonReturnBack;
 import org.mineacademy.fo.plugin.SimplePlugin;
@@ -14,8 +16,9 @@ import org.mineacademy.fo.remain.CompMaterial;
 
 public final class CowCannon extends SimplePlugin {
 
-  private BukkitTask task1;
-  private BukkitTask task2;
+  private BukkitTask butterflyTask;
+  private BukkitTask board;
+  private BukkitTask laserPointerTask;
 
   public static CowCannon getInstance() {
     return (CowCannon) SimplePlugin.getInstance();
@@ -28,6 +31,7 @@ public final class CowCannon extends SimplePlugin {
     // Events
     getServer().getPluginManager().registerEvents(new EntityListener(), this);
     getServer().getPluginManager().registerEvents(new GuiListener(), this);
+    getServer().getPluginManager().registerEvents(new LaserPointerListener(), this);
 
     // commands
     getCommand("cow").setExecutor(new CowCommand());
@@ -43,20 +47,25 @@ public final class CowCannon extends SimplePlugin {
     CustomRecipe.register();
 
     // tasks
-    task1 = getServer().getScheduler().runTaskTimer(this, ButterflyTask.getInstance(), 0, 1);
-    task2 = getServer().getScheduler().runTaskTimer(this, Board.getInstance(), 0, 20);
+    butterflyTask = getServer().getScheduler().runTaskTimer(this, ButterflyTask.getInstance(), 0, 1);
+    board = getServer().getScheduler().runTaskTimer(this, Board.getInstance(), 0, 20);
+    laserPointerTask = getServer().getScheduler().runTaskTimer(this, LaserPointerTask.getInstance(), 0, 1);
 
     getLogger().info("CowCannon has ben enabled.");
   }
 
   @Override
   public void onPluginStop() {
-    if (task1 != null && !task1.isCancelled()) {
-      task1.cancel();
+    if (butterflyTask != null && !butterflyTask.isCancelled()) {
+      butterflyTask.cancel();
     }
 
-    if (task2 != null && !task2.isCancelled()) {
-      task2.cancel();
+    if (board != null && !board.isCancelled()) {
+      board.cancel();
+    }
+
+    if (laserPointerTask != null && !laserPointerTask.isCancelled()) {
+      laserPointerTask.cancel();
     }
 
     getLogger().info("CowCannon has ben disabled.");
