@@ -3,7 +3,7 @@ name: ${project.artifactId}
 version: '${project.version}'
 main: ${main.paper}
 api-version: '1.20'
-softdepend: [ ProtocolLib ]
+softdepend: [ ProtocolLib, Vault ]
 commands:
   cow:
     description: "Spawn an exploding cow."
@@ -34,4 +34,10 @@ commands:
     usage: "/gui"
     aliases: [ ]
     permission: cowcannon.command.gui
+    permission-message: "You do not have permission to run this command."
+  economy:
+    description: "Manages Cow economy."
+    usage: "/economy [view/take/give] <player> <amount>"
+    aliases: [ eco, money, balance, bal ]
+    permission: cowcannon.command.economy
     permission-message: "You do not have permission to run this command."
