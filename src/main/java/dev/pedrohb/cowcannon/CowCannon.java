@@ -3,6 +3,7 @@ package dev.pedrohb.cowcannon;
 import dev.pedrohb.cowcannon.commands.*;
 import dev.pedrohb.cowcannon.configs.Settings;
 import dev.pedrohb.cowcannon.hooks.CowEconomyHook;
+import dev.pedrohb.cowcannon.hooks.PlaceholderAPIHook;
 import dev.pedrohb.cowcannon.hooks.ProtocolLibHook;
 import dev.pedrohb.cowcannon.listeners.ChatListener;
 import dev.pedrohb.cowcannon.listeners.EntityListener;
@@ -70,6 +71,10 @@ public final class CowCannon extends SimplePlugin {
 
     if (Bukkit.getPluginManager().getPlugin("Vault") != null) {
       CowEconomyHook.register();
+    }
+
+    if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+      PlaceholderAPIHook.registerHook();
     }
 
     // tasks
