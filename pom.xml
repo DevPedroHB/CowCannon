@@ -23,7 +23,7 @@
     <repository>
       <id>github</id>
       <name>${artifactId}</name>
-      <url>https://maven.pkg.github.com/DevPedroHB/${artifactId}</url>
+      <url>https://maven.pkg.github.com/DevPedroHB/plugins</url>
     </repository>
   </distributionManagement>
 
