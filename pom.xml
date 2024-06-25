@@ -19,6 +19,14 @@
     <foundation.path>com.github.kangarko</foundation.path>
   </properties>
 
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>${artifactId}</name>
+      <url>https://maven.pkg.github.com/DevPedroHB/${artifactId}</url>
+    </repository>
+  </distributionManagement>
+
   <build>
     <plugins>
       <plugin>
