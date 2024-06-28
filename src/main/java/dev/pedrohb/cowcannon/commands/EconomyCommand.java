@@ -1,6 +1,7 @@
 package dev.pedrohb.cowcannon.commands;
 
 import dev.pedrohb.cowcannon.CowCannon;
+import dev.pedrohb.cowcannon.hooks.DiscordSRVHook;
 import dev.pedrohb.cowcannon.hooks.VaultHook;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -87,7 +88,9 @@ public final class EconomyCommand implements CommandExecutor, TabCompleter {
                 } else {
                   sender.sendMessage(ChatColor.GREEN + "Gave " + VaultHook.formatCurrencySymbol(amount) + " to " + target.getName() + "' account.");
 
-                  //DiscordSRVHook.sendMessage("standard", "Gave " + VaultHook.formatCurrencySymbol(amount) + " to " + target.getName() + "' account.");
+                  if (DiscordSRVHook.isDiscordSRVHooked()) {
+                    DiscordSRVHook.sendMessage("1234019914629513307", "Gave " + VaultHook.formatCurrencySymbol(amount) + " to " + target.getName() + "' account.");
+                  }
                 }
               }
             } else {

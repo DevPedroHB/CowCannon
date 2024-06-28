@@ -1,5 +1,9 @@
 package dev.pedrohb.cowcannon.listeners;
 
+import dev.pedrohb.cowcannon.hooks.DiscordSRVHook;
+import github.scarsz.discordsrv.DiscordSRV;
+import github.scarsz.discordsrv.dependencies.jda.api.entities.TextChannel;
+import github.scarsz.discordsrv.util.WebhookUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -38,6 +42,12 @@ public final class ChatListener implements Listener {
       }
 
       recipient.sendMessage(ChatColor.GRAY + event.getPlayer().getName() + ": " + ChatColor.WHITE + message);
+    }
+
+    if (DiscordSRVHook.isDiscordSRVHooked()) {
+      TextChannel textChannel = DiscordSRV.getPlugin().getDestinationTextChannelForGameChannelName("1234019914629513307");
+
+      WebhookUtil.deliverMessage(textChannel, event.getPlayer(), event.getMessage());
     }
   }
 }
