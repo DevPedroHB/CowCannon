@@ -41,3 +41,9 @@ commands:
     aliases: [ eco, money, balance, bal ]
     permission: cowcannon.command.economy
     permission-message: "You do not have permission to run this command."
+  crawl:
+    description: "Toggles crawling."
+    usage: "/crawl"
+    aliases: [ nadar ]
+    permission: cowcannon.command.crawl
+    permission-message: "You do not have permission to run this command."

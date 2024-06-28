@@ -6,11 +6,8 @@ import dev.pedrohb.cowcannon.hooks.CowEconomyHook;
 import dev.pedrohb.cowcannon.hooks.DiscordSRVHook;
 import dev.pedrohb.cowcannon.hooks.PlaceholderAPIHook;
 import dev.pedrohb.cowcannon.hooks.ProtocolLibHook;
-import dev.pedrohb.cowcannon.listeners.ChatListener;
-import dev.pedrohb.cowcannon.listeners.EntityListener;
-import dev.pedrohb.cowcannon.listeners.GuiListener;
-import dev.pedrohb.cowcannon.listeners.LaserPointerListener;
-import dev.pedrohb.cowcannon.models.CustomRecipe;
+import dev.pedrohb.cowcannon.listeners.*;
+import dev.pedrohb.cowcannon.recipes.CustomRecipe;
 import dev.pedrohb.cowcannon.tasks.ButterflyTask;
 import dev.pedrohb.cowcannon.tasks.LaserPointerTask;
 import dev.pedrohb.cowcannon.tasks.ScoreboardTask;
@@ -46,6 +43,10 @@ public final class CowCannon extends SimplePlugin {
     getServer().getPluginManager().registerEvents(new LaserPointerListener(), this);
     getServer().getPluginManager().registerEvents(new ChatListener(), this);
 
+    if (version >= 14) {
+      getServer().getPluginManager().registerEvents(new CrawlListener(), this);
+    }
+
     // commands
     getCommand("cow").setExecutor(new CowCommand());
     getCommand("butterfly").setExecutor(new ButterflyCommand());
@@ -55,6 +56,10 @@ public final class CowCannon extends SimplePlugin {
 
     if (version >= 19) {
       getCommand("displayentity").setExecutor(new DisplayEntityCommand());
+    }
+
+    if (version >= 14) {
+      getCommand("crawl").setExecutor(new CrawlCommand());
     }
 
     // configs

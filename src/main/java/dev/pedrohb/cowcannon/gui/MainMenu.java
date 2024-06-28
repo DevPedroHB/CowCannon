@@ -1,4 +1,4 @@
-package dev.pedrohb.cowcannon.models;
+package dev.pedrohb.cowcannon.gui;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;

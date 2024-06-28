@@ -1,4 +1,4 @@
-package dev.pedrohb.cowcannon.models;
+package dev.pedrohb.cowcannon.recipes;
 
 import dev.pedrohb.cowcannon.CowCannon;
 import org.bukkit.Bukkit;
