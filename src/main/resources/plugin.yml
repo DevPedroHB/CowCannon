@@ -53,3 +53,9 @@ commands:
     aliases: [ ]
     permission: cowcannon.command.toast
     permission-message: "You do not have permission to run this command."
+  locale:
+    description: "Test player's localization."
+    usage: "/locale <get/translate/key>"
+    aliases: [ ]
+    permission: cowcannon.command.locale
+    permission-message: "You do not have permission to run this command."

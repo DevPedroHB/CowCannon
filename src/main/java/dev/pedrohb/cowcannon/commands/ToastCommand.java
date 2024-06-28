@@ -71,14 +71,17 @@ public final class ToastCommand implements CommandExecutor, TabCompleter {
         for (final Toast.Style style : Toast.Style.values()) {
           tab.add(style.toString().toLowerCase());
         }
+
         break;
       case 2:
         for (final Material material : Material.values()) {
           tab.add(material.toString().toLowerCase());
         }
+
         break;
       case 3:
         tab.add("Hello");
+        
         break;
     }
 

@@ -53,6 +53,7 @@ public final class CowCannon extends SimplePlugin {
     getCommand("customitem").setExecutor(new CustomItemCommand());
     getCommand("gui").setExecutor(new GuiCommand());
     getCommand("economy").setExecutor(new EconomyCommand());
+    getCommand("locale").setExecutor(new LocaleCommand());
 
     if (version >= 19) {
       getCommand("displayentity").setExecutor(new DisplayEntityCommand());
