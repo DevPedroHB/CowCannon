@@ -47,3 +47,9 @@ commands:
     aliases: [ nadar ]
     permission: cowcannon.command.crawl
     permission-message: "You do not have permission to run this command."
+  toast:
+    description: "Sends a toast notification."
+    usage: "/toast <style> <material> Hello World"
+    aliases: [ ]
+    permission: cowcannon.command.toast
+    permission-message: "You do not have permission to run this command."

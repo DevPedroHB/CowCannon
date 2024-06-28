@@ -62,6 +62,10 @@ public final class CowCannon extends SimplePlugin {
       getCommand("crawl").setExecutor(new CrawlCommand());
     }
 
+    if (version >= 12) {
+      getCommand("toast").setExecutor(new ToastCommand());
+    }
+
     // configs
     Settings.getInstance().load();
 
