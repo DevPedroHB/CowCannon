@@ -11,13 +11,21 @@ import dev.pedrohb.cowcannon.recipes.CustomRecipe;
 import dev.pedrohb.cowcannon.tasks.ButterflyTask;
 import dev.pedrohb.cowcannon.tasks.LaserPointerTask;
 import dev.pedrohb.cowcannon.tasks.ScoreboardTask;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitTask;
 import org.mineacademy.fo.menu.button.ButtonReturnBack;
 import org.mineacademy.fo.plugin.SimplePlugin;
 import org.mineacademy.fo.remain.CompMaterial;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 public final class CowCannon extends SimplePlugin {
+
+  @Getter
+  private static final Map<UUID, String> playerTags = new HashMap<>();
 
   private BukkitTask butterflyTask;
   private BukkitTask scoreboardTask;
@@ -54,6 +62,7 @@ public final class CowCannon extends SimplePlugin {
     getCommand("gui").setExecutor(new GuiCommand());
     getCommand("economy").setExecutor(new EconomyCommand());
     getCommand("locale").setExecutor(new LocaleCommand());
+    getCommand("tag").setExecutor(new TagCommand());
 
     if (version >= 19) {
       getCommand("displayentity").setExecutor(new DisplayEntityCommand());

@@ -59,3 +59,9 @@ commands:
     aliases: [ ]
     permission: cowcannon.command.locale
     permission-message: "You do not have permission to run this command."
+  tag:
+    description: "Change a player tag above his head."
+    usage: "/tag <newTag/reset>"
+    aliases: [ ]
+    permission: cowcannon.command.tag
+    permission-message: "You do not have permission to run this command."
