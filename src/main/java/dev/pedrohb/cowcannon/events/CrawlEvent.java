@@ -1,4 +1,4 @@
-package dev.pedrohb.cowcannon.api;
+package dev.pedrohb.cowcannon.events;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -15,6 +15,8 @@ public final class CrawlEvent extends Event implements Cancellable {
   @Setter
   @Getter
   private Player player;
+  @Getter
+  @Setter
   private boolean cancelled;
 
   public CrawlEvent(Player player) {
@@ -23,16 +25,6 @@ public final class CrawlEvent extends Event implements Cancellable {
 
   public static HandlerList getHandlerList() {
     return handlers;
-  }
-
-  @Override
-  public boolean isCancelled() {
-    return cancelled;
-  }
-
-  @Override
-  public void setCancelled(boolean cancelled) {
-    this.cancelled = cancelled;
   }
 
   @Override

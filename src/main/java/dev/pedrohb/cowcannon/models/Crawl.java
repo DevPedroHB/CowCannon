@@ -12,7 +12,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
 
-import dev.pedrohb.cowcannon.api.CrawlEvent;
+import dev.pedrohb.cowcannon.events.CrawlEvent;
 import lombok.Getter;
 
 @SuppressWarnings("deprecation")
