@@ -62,7 +62,7 @@ commands:
     permission-message: "You do not have permission to run this command."
   locale:
     description: "Test player's localization."
-    usage: "/locale <get/translate/key>"
+    usage: "/locale [get/translate/key]"
     aliases: []
     permission: cowcannon.command.locale
     permission-message: "You do not have permission to run this command."
@@ -71,4 +71,10 @@ commands:
     usage: "/tag <newTag/reset>"
     aliases: []
     permission: cowcannon.command.tag
+    permission-message: "You do not have permission to run this command."
+  hologram:
+    description: "Spawn a hologram."
+    usage: "/hologram <line1|line2|...>"
+    aliases: [holo]
+    permission: cowcannon.command.hologram
     permission-message: "You do not have permission to run this command."
