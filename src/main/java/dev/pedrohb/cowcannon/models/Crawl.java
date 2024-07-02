@@ -1,7 +1,9 @@
 package dev.pedrohb.cowcannon.models;
 
-import dev.pedrohb.cowcannon.api.CrawlEvent;
-import lombok.Getter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -10,10 +12,10 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import dev.pedrohb.cowcannon.api.CrawlEvent;
+import lombok.Getter;
 
+@SuppressWarnings("deprecation")
 public final class Crawl {
 
   private static final Map<UUID, Crawl> crawlingPlayers = new HashMap<>();

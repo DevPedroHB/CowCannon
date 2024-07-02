@@ -1,7 +1,8 @@
 package dev.pedrohb.cowcannon.utils;
 
-import dev.pedrohb.cowcannon.CowCannon;
 import org.bukkit.NamespacedKey;
+
+import dev.pedrohb.cowcannon.CowCannon;
 
 public final class Keys {
 

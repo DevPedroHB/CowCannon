@@ -1,8 +1,10 @@
 package dev.pedrohb.cowcannon.commands;
 
-import dev.pedrohb.cowcannon.CowCannon;
-import dev.pedrohb.cowcannon.hooks.DiscordSRVHook;
-import dev.pedrohb.cowcannon.hooks.VaultHook;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -14,14 +16,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import dev.pedrohb.cowcannon.CowCannon;
+import dev.pedrohb.cowcannon.hooks.DiscordSRVHook;
+import dev.pedrohb.cowcannon.hooks.VaultHook;
 
+@SuppressWarnings("deprecation")
 public final class EconomyCommand implements CommandExecutor, TabCompleter {
 
   @Override
-  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
+      @NotNull String[] args) {
     if (!(sender instanceof Player)) {
       sender.sendMessage("Only players can use this command.");
 
@@ -51,7 +55,8 @@ public final class EconomyCommand implements CommandExecutor, TabCompleter {
           @Override
           public void run() {
             if (!VaultHook.hasEconomy()) {
-              sender.sendMessage(ChatColor.RED + "Vault plugin not found or it did not find any compatible Economy plugin.");
+              sender.sendMessage(
+                  ChatColor.RED + "Vault plugin not found or it did not find any compatible Economy plugin.");
 
               return;
             }
@@ -59,7 +64,8 @@ public final class EconomyCommand implements CommandExecutor, TabCompleter {
             if ("view".equals(param)) {
               double balance = VaultHook.getBalance(target);
 
-              sender.sendMessage(ChatColor.GOLD + target.getName() + "'s balance: " + VaultHook.formatCurrencySymbol(balance));
+              sender.sendMessage(
+                  ChatColor.GOLD + target.getName() + "'s balance: " + VaultHook.formatCurrencySymbol(balance));
             } else if ("take".equals(param) || "give".equals(param)) {
               double amount;
 
@@ -77,7 +83,8 @@ public final class EconomyCommand implements CommandExecutor, TabCompleter {
                 if (errorMessage != null && !errorMessage.isEmpty()) {
                   sender.sendMessage(ChatColor.RED + "Error: " + errorMessage);
                 } else {
-                  sender.sendMessage(ChatColor.RED + "Took " + VaultHook.formatCurrencySymbol(amount) + " from " + target.getName() + "' account.");
+                  sender.sendMessage(ChatColor.RED + "Took " + VaultHook.formatCurrencySymbol(amount) + " from "
+                      + target.getName() + "' account.");
                 }
 
               } else {
@@ -86,10 +93,12 @@ public final class EconomyCommand implements CommandExecutor, TabCompleter {
                 if (errorMessage != null && !errorMessage.isEmpty()) {
                   sender.sendMessage(ChatColor.RED + "Error: " + errorMessage);
                 } else {
-                  sender.sendMessage(ChatColor.GREEN + "Gave " + VaultHook.formatCurrencySymbol(amount) + " to " + target.getName() + "' account.");
+                  sender.sendMessage(ChatColor.GREEN + "Gave " + VaultHook.formatCurrencySymbol(amount) + " to "
+                      + target.getName() + "' account.");
 
                   if (DiscordSRVHook.isDiscordSRVHooked()) {
-                    DiscordSRVHook.sendMessage("1234019914629513307", "Gave " + VaultHook.formatCurrencySymbol(amount) + " to " + target.getName() + "' account.");
+                    DiscordSRVHook.sendMessage("1234019914629513307",
+                        "Gave " + VaultHook.formatCurrencySymbol(amount) + " to " + target.getName() + "' account.");
                   }
                 }
               }
@@ -105,11 +114,14 @@ public final class EconomyCommand implements CommandExecutor, TabCompleter {
   }
 
   @Override
-  public java.util.List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+  public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias,
+      @NotNull String[] args) {
     if (args.length == 1) {
-      return Arrays.asList("view", "take", "give").stream().filter(s -> s.startsWith(args[0])).collect(Collectors.toList());
+      return Arrays.asList("view", "take", "give").stream().filter(s -> s.startsWith(args[0]))
+          .collect(Collectors.toList());
     } else if (args.length == 2) {
-      return Bukkit.getOnlinePlayers().stream().map(Player::getName).filter(s -> s.startsWith(args[1])).collect(Collectors.toList());
+      return Bukkit.getOnlinePlayers().stream().map(Player::getName).filter(s -> s.startsWith(args[1]))
+          .collect(Collectors.toList());
     } else if (args.length == 3 && ("take".equals(args[0]) || "give".equals(args[0]))) {
       return Arrays.asList("1", "100", "1000").stream().filter(s -> s.startsWith(args[2])).collect(Collectors.toList());
     } else {

@@ -1,5 +1,10 @@
 package dev.pedrohb.cowcannon.gui;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import javax.annotation.Nullable;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -18,10 +23,7 @@ import org.mineacademy.fo.menu.model.ItemCreator;
 import org.mineacademy.fo.menu.model.MenuClickLocation;
 import org.mineacademy.fo.remain.CompMaterial;
 
-import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
+@SuppressWarnings("deprecation")
 public final class MainMenu extends Menu {
 
   @Position(start = StartPosition.CENTER, value = -2)
@@ -112,7 +114,7 @@ public final class MainMenu extends Menu {
 
     @Override
     protected String[] getInfo() {
-      return new String[]{
+      return new String[] {
           "Click bucket to clear your inventory.",
           "",
           "Click apple to refill your health."
@@ -163,11 +165,12 @@ public final class MainMenu extends Menu {
 
     @Override
     protected void onMenuClose(StrictMap<Integer, ItemStack> items) {
-      // TODO custom logic > save items to your config / db
+      // TODO: Custom logic > save items to your config / db.
     }
 
     @Override
-    protected boolean isActionAllowed(MenuClickLocation location, int slot, @Nullable ItemStack clicked, @Nullable ItemStack cursor) {
+    protected boolean isActionAllowed(MenuClickLocation location, int slot, @Nullable ItemStack clicked,
+        @Nullable ItemStack cursor) {
       return slot <= 9;
     }
   }

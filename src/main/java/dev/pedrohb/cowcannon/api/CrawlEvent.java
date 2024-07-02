@@ -1,11 +1,12 @@
 package dev.pedrohb.cowcannon.api;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+
+import lombok.Getter;
+import lombok.Setter;
 
 public final class CrawlEvent extends Event implements Cancellable {
 
@@ -34,6 +35,7 @@ public final class CrawlEvent extends Event implements Cancellable {
     this.cancelled = cancelled;
   }
 
+  @Override
   public HandlerList getHandlers() {
     return handlers;
   }

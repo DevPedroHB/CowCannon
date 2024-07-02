@@ -1,16 +1,23 @@
 package dev.pedrohb.cowcannon.recipes;
 
-import dev.pedrohb.cowcannon.CowCannon;
+import java.util.Arrays;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.FurnaceRecipe;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.RecipeChoice;
+import org.bukkit.inventory.ShapedRecipe;
+import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Arrays;
+import dev.pedrohb.cowcannon.CowCannon;
 
+@SuppressWarnings("deprecation")
 public final class CustomRecipe {
 
   private static final CowCannon cowCannon = CowCannon.getInstance();
@@ -44,7 +51,7 @@ public final class CustomRecipe {
     dickSword.setItemMeta(dickSwordMeta);
 
     final FurnaceRecipe recipe1 = new FurnaceRecipe(new NamespacedKey(cowCannon, "DickSwordRecipe"),
-        dickSword, new RecipeChoice.ExactChoice(superPaper), 10, 20 /*1 sec*/);
+        dickSword, new RecipeChoice.ExactChoice(superPaper), 10, 20 /* 1 sec */);
 
     Bukkit.addRecipe(recipe1);
 

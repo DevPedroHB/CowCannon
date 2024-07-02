@@ -1,12 +1,14 @@
 package dev.pedrohb.cowcannon.models;
 
-import dev.pedrohb.cowcannon.CowCannon;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 
-import java.util.UUID;
+import dev.pedrohb.cowcannon.CowCannon;
 
+@SuppressWarnings("deprecation")
 public final class Toast {
 
   private final NamespacedKey key;

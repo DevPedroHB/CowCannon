@@ -1,7 +1,10 @@
 package dev.pedrohb.cowcannon.commands;
 
-import dev.pedrohb.cowcannon.configs.Settings;
-import dev.pedrohb.cowcannon.utils.Keys;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,15 +18,15 @@ import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import dev.pedrohb.cowcannon.configs.Settings;
+import dev.pedrohb.cowcannon.utils.Keys;
 
+@SuppressWarnings({ "deprecation", "unused" })
 public final class CowCommand implements CommandExecutor, TabExecutor {
 
   @Override
-  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
+      @NotNull String[] args) {
     if (!(sender instanceof Player)) {
       sender.sendMessage("Only players can use this command.");
 
@@ -58,7 +61,8 @@ public final class CowCommand implements CommandExecutor, TabExecutor {
     }
 
     Player player = (Player) sender;
-    LivingEntity entity = (LivingEntity) player.getWorld().spawnEntity(player.getLocation(), Settings.getInstance().getExplodingType());
+    LivingEntity entity = (LivingEntity) player.getWorld().spawnEntity(player.getLocation(),
+        Settings.getInstance().getExplodingType());
 
     if (args.length == 1 && args[0].equalsIgnoreCase("baby")) {
       if (entity instanceof Ageable) {
@@ -73,7 +77,7 @@ public final class CowCommand implements CommandExecutor, TabExecutor {
     try {
       entity.getPersistentDataContainer().set(Keys.CUSTOM_COW, PersistentDataType.BOOLEAN, true);
     } catch (LinkageError t) {
-      // have an alternative code for old MC version
+      // TODO: have an alternative code for old MC version
     }
 
     entity.setCustomName(ChatColor.RED + "Milk Me");
@@ -83,7 +87,8 @@ public final class CowCommand implements CommandExecutor, TabExecutor {
   }
 
   @Override
-  public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+  public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command,
+      @NotNull String label, @NotNull String[] args) {
     if (args.length == 1) {
       return Arrays.asList("baby", "set");
     }

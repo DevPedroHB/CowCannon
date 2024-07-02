@@ -1,18 +1,24 @@
 package dev.pedrohb.cowcannon.tasks;
 
-import lombok.Getter;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Color;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@SuppressWarnings("deprecation")
+@NoArgsConstructor
 public final class LaserPointerTask implements Runnable {
 
   @Getter
   private static final LaserPointerTask instance = new LaserPointerTask();
-
-  private LaserPointerTask() {
-  }
 
   @Override
   public void run() {

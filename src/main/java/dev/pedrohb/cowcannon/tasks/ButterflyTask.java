@@ -1,6 +1,9 @@
 package dev.pedrohb.cowcannon.tasks;
 
-import lombok.Getter;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -8,18 +11,15 @@ import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public final class ButterflyTask implements Runnable {
 
   @Getter
   private static final ButterflyTask instance = new ButterflyTask();
   private final Set<UUID> viewingWings = new HashSet<>();
-
-  private ButterflyTask() {
-  }
 
   @Override
   public void run() {

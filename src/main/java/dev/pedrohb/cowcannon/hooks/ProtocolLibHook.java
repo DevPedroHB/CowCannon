@@ -1,5 +1,12 @@
 package dev.pedrohb.cowcannon.hooks;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
+
 import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
@@ -10,13 +17,8 @@ import com.comphenix.protocol.wrappers.EnumWrappers;
 import com.comphenix.protocol.wrappers.PlayerInfoData;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import com.comphenix.protocol.wrappers.WrappedGameProfile;
-import dev.pedrohb.cowcannon.CowCannon;
-import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import dev.pedrohb.cowcannon.CowCannon;
 
 public final class ProtocolLibHook {
 

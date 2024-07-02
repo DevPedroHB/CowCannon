@@ -1,12 +1,13 @@
 package dev.pedrohb.cowcannon.configs;
 
-import dev.pedrohb.cowcannon.CowCannon;
-import lombok.Getter;
+import java.io.File;
+import java.util.List;
+
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 
-import java.io.File;
-import java.util.List;
+import dev.pedrohb.cowcannon.CowCannon;
+import lombok.Getter;
 
 public final class Settings {
 
@@ -14,7 +15,7 @@ public final class Settings {
   private final static Settings instance = new Settings();
   private File file;
   private YamlConfiguration config;
-  
+
   @Getter
   private EntityType explodingType;
   @Getter

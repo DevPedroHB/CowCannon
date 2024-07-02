@@ -1,12 +1,14 @@
 package dev.pedrohb.cowcannon.hooks;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+
 import github.scarsz.discordsrv.DiscordSRV;
 import github.scarsz.discordsrv.api.Subscribe;
 import github.scarsz.discordsrv.api.events.DiscordGuildMessageReceivedEvent;
 import github.scarsz.discordsrv.dependencies.jda.api.entities.TextChannel;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 
+@SuppressWarnings("deprecation")
 public class DiscordSRVHook {
 
   private static final DiscordSRVHook instance = new DiscordSRVHook();
@@ -48,7 +50,7 @@ public class DiscordSRVHook {
     String channel = event.getChannel().getName();
     String message = event.getMessage().getContentRaw();
 
-    Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes(
-        '&', "&7[&bDiscord&7] &f" + playerName + " &7in &f" + channel + " &8» &f" + message));
+    Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&',
+        "&7[&bDiscord&7] &f" + playerName + " &7in &f" + channel + " &8» &f" + message));
   }
 }

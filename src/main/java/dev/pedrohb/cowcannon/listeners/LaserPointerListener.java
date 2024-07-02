@@ -10,6 +10,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.RayTraceResult;
 
+@SuppressWarnings("deprecation")
 public final class LaserPointerListener implements Listener {
 
   @EventHandler
@@ -40,7 +41,8 @@ public final class LaserPointerListener implements Listener {
       if (result != null && result.getHitBlock() != null && result.getHitBlock().isSolid()) {
         player.getWorld().createExplosion(result.getHitBlock().getLocation(), 5F, true);
       } else {
-        player.sendMessage(ChatColor.LIGHT_PURPLE + "[Laser]" + ChatColor.WHITE + " Target is too far or not a solid block.");
+        player.sendMessage(
+            ChatColor.LIGHT_PURPLE + "[Laser]" + ChatColor.WHITE + " Target is too far or not a solid block.");
       }
     }
   }

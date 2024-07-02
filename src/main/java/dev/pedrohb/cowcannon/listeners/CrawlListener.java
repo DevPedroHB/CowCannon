@@ -1,7 +1,5 @@
 package dev.pedrohb.cowcannon.listeners;
 
-import dev.pedrohb.cowcannon.CowCannon;
-import dev.pedrohb.cowcannon.models.Crawl;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -12,6 +10,9 @@ import org.bukkit.event.entity.EntityToggleSwimEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
+
+import dev.pedrohb.cowcannon.CowCannon;
+import dev.pedrohb.cowcannon.models.Crawl;
 
 public final class CrawlListener implements Listener {
 
@@ -58,6 +59,7 @@ public final class CrawlListener implements Listener {
   }
 }
 
+@SuppressWarnings("deprecation")
 class ModernListener implements Listener {
   @EventHandler(ignoreCancelled = true)
   public void onToggleSwim(EntityToggleSwimEvent event) {

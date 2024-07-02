@@ -1,25 +1,31 @@
 package dev.pedrohb.cowcannon.tasks;
 
-import dev.pedrohb.cowcannon.CowCannon;
-import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.*;
+import org.bukkit.scoreboard.Criterias;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 
+import dev.pedrohb.cowcannon.CowCannon;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@SuppressWarnings("deprecation")
+@NoArgsConstructor
 public final class ScoreboardTask implements Runnable {
 
   @Getter
   private final static ScoreboardTask instance = new ScoreboardTask();
 
-  private ScoreboardTask() {
-  }
-
   @Override
   public void run() {
     for (Player player : Bukkit.getOnlinePlayers()) {
-      if (player.getScoreboard() != null && player.getScoreboard().getObjective(CowCannon.getInstance().getName()) != null) {
+      if (player.getScoreboard() != null
+          && player.getScoreboard().getObjective(CowCannon.getInstance().getName()) != null) {
         updateScoreboard(player);
       } else {
         createNewScoreboard(player);
@@ -51,7 +57,8 @@ public final class ScoreboardTask implements Runnable {
 
     objective.getScore(teamKey).setScore(0);
 
-    Objective objectiveHealth = scoreboard.registerNewObjective(CowCannon.getInstance().getName() + "_health", Criterias.HEALTH);
+    Objective objectiveHealth = scoreboard.registerNewObjective(CowCannon.getInstance().getName() + "_health",
+        Criterias.HEALTH);
 
     objectiveHealth.setDisplayName(ChatColor.RED + "❤");
     objectiveHealth.setDisplaySlot(DisplaySlot.BELOW_NAME);
@@ -63,6 +70,7 @@ public final class ScoreboardTask implements Runnable {
     Scoreboard scoreboard = player.getScoreboard();
     Team team1 = scoreboard.getTeam("team1");
 
-    team1.setSuffix(ChatColor.AQUA + "" + (player.getStatistic(Statistic.WALK_ONE_CM) + player.getStatistic(Statistic.SPRINT_ONE_CM)));
+    team1.setSuffix(ChatColor.AQUA + ""
+        + (player.getStatistic(Statistic.WALK_ONE_CM) + player.getStatistic(Statistic.SPRINT_ONE_CM)));
   }
 }

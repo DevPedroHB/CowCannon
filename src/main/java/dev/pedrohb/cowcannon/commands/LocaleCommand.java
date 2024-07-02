@@ -1,7 +1,5 @@
 package dev.pedrohb.cowcannon.commands;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,10 +7,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
+
+@SuppressWarnings("deprecation")
 public final class LocaleCommand implements CommandExecutor {
 
   @Override
-  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
+      @NotNull String[] args) {
     if (!(sender instanceof Player)) {
       sender.sendMessage(ChatColor.RED + "Only players can use this command.");
 
@@ -47,6 +50,7 @@ public final class LocaleCommand implements CommandExecutor {
   }
 }
 
+@SuppressWarnings("deprecation")
 class LocaleExecutor {
 
   static void executeLocale(Player player) {

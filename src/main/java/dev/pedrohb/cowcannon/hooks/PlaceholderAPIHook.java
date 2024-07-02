@@ -1,14 +1,16 @@
 package dev.pedrohb.cowcannon.hooks;
 
-import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import me.clip.placeholderapi.expansion.Relational;
+import javax.annotation.Nullable;
+
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
+import me.clip.placeholderapi.expansion.Relational;
 
+@SuppressWarnings("deprecation")
 public class PlaceholderAPIHook extends PlaceholderExpansion implements Relational {
 
   public static void registerHook() {

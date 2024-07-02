@@ -1,6 +1,7 @@
 package dev.pedrohb.cowcannon.commands;
 
-import dev.pedrohb.cowcannon.utils.Keys;
+import java.util.Arrays;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -14,12 +15,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
+import dev.pedrohb.cowcannon.utils.Keys;
 
+@SuppressWarnings("deprecation")
 public class CustomItemCommand implements CommandExecutor {
 
   @Override
-  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
+      @NotNull String[] args) {
 
     if (!(sender instanceof Player)) {
       sender.sendMessage("Only players can use this command.");
@@ -34,8 +37,7 @@ public class CustomItemCommand implements CommandExecutor {
     meta.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + "Custom Bucket");
     meta.setLore(Arrays.asList(
         "",
-        ChatColor.GRAY + "Right click me on a cow."
-    ));
+        ChatColor.GRAY + "Right click me on a cow."));
     meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
     meta.addEnchant(Enchantment.SHARPNESS, 1, true);
     meta.getPersistentDataContainer().set(Keys.CUSTOM_BUCKET, PersistentDataType.BOOLEAN, true);

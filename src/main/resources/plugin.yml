@@ -1,67 +1,74 @@
 author: ${author}
 name: ${project.name}
-version: '${project.version}'
+version: "${project.version}"
 main: ${main.paper}
-api-version: '1.20'
-softdepend: [ ProtocolLib, Vault, PlaceholderAPI, DiscordSRV ]
+api-version: "1.20"
+folia-supported: true
+softdepend:
+  - DiscordSRV
+  - PlaceholderAPI
+  - ProtocolLib
+  - Vault
+libraries:
+  - org.jsoup:jsoup:1.17.2
 commands:
   cow:
     description: "Spawn an exploding cow."
     usage: "/cow [baby/set] <entity>"
-    aliases: [ cowcannon ]
+    aliases: [cowcannon]
     permission: cowcannon.command.cow
     permission-message: "You do not have permission to run this command."
   butterfly:
     description: "Toggle particle effect."
     usage: "/butterfly"
-    aliases: [ butterflywings ]
+    aliases: [butterflywings]
     permission: cowcannon.command.butterfly
     permission-message: "You do not have permission to run this command."
   displayentity:
     description: "Spawns a display entity."
     usage: "/displayentity [item/block/text]"
-    aliases: [ de ]
+    aliases: [de]
     permission: cowcannon.command.displayentity
     permission-message: "You do not have permission to run this command."
   customitem:
     description: "Gives you a custom item."
     usage: "/customitem"
-    aliases: [ itemcustom ]
+    aliases: [itemcustom]
     permission: cowcannon.command.customitem
     permission-message: "You do not have permission to run this command."
   gui:
     description: "Opens a GUI."
     usage: "/gui"
-    aliases: [ ]
+    aliases: []
     permission: cowcannon.command.gui
     permission-message: "You do not have permission to run this command."
   economy:
     description: "Manages Cow economy."
     usage: "/economy [view/take/give] <player> <amount>"
-    aliases: [ eco, money, balance, bal ]
+    aliases: [eco, money, balance, bal]
     permission: cowcannon.command.economy
     permission-message: "You do not have permission to run this command."
   crawl:
     description: "Toggles crawling."
     usage: "/crawl"
-    aliases: [ nadar ]
+    aliases: [nadar]
     permission: cowcannon.command.crawl
     permission-message: "You do not have permission to run this command."
   toast:
     description: "Sends a toast notification."
     usage: "/toast <style> <material> Hello World"
-    aliases: [ ]
+    aliases: []
     permission: cowcannon.command.toast
     permission-message: "You do not have permission to run this command."
   locale:
     description: "Test player's localization."
     usage: "/locale <get/translate/key>"
-    aliases: [ ]
+    aliases: []
     permission: cowcannon.command.locale
     permission-message: "You do not have permission to run this command."
   tag:
     description: "Change a player tag above his head."
     usage: "/tag <newTag/reset>"
-    aliases: [ ]
+    aliases: []
     permission: cowcannon.command.tag
     permission-message: "You do not have permission to run this command."

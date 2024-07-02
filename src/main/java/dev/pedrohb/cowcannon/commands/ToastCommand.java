@@ -1,6 +1,11 @@
 package dev.pedrohb.cowcannon.commands;
 
-import dev.pedrohb.cowcannon.models.Toast;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.annotation.Nullable;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -10,15 +15,14 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import dev.pedrohb.cowcannon.models.Toast;
 
+@SuppressWarnings("deprecation")
 public final class ToastCommand implements CommandExecutor, TabCompleter {
 
   @Override
-  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+  public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label,
+      @NotNull String[] args) {
     if (!(sender instanceof Player)) {
       sender.sendMessage(ChatColor.RED + "Only players can use this command.");
 
@@ -63,7 +67,8 @@ public final class ToastCommand implements CommandExecutor, TabCompleter {
   }
 
   @Override
-  public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+  public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command,
+      @NotNull String label, @NotNull String[] args) {
     final List<String> tab = new ArrayList<>();
 
     switch (args.length) {
@@ -81,7 +86,7 @@ public final class ToastCommand implements CommandExecutor, TabCompleter {
         break;
       case 3:
         tab.add("Hello");
-        
+
         break;
     }
 

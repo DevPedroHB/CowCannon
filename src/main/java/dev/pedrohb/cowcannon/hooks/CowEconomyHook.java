@@ -1,16 +1,17 @@
 package dev.pedrohb.cowcannon.hooks;
 
-import dev.pedrohb.cowcannon.CowCannon;
-import net.milkbowl.vault.economy.AbstractEconomy;
-import net.milkbowl.vault.economy.Economy;
-import net.milkbowl.vault.economy.EconomyResponse;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.ServicePriority;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.ServicePriority;
+
+import dev.pedrohb.cowcannon.CowCannon;
+import net.milkbowl.vault.economy.AbstractEconomy;
+import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.economy.EconomyResponse;
 
 public class CowEconomyHook extends AbstractEconomy {
 
@@ -20,7 +21,8 @@ public class CowEconomyHook extends AbstractEconomy {
   }
 
   public static void register() {
-    Bukkit.getServicesManager().register(Economy.class, new CowEconomyHook(), CowCannon.getInstance(), ServicePriority.Normal);
+    Bukkit.getServicesManager().register(Economy.class, new CowEconomyHook(), CowCannon.getInstance(),
+        ServicePriority.Normal);
   }
 
   @Override
@@ -108,11 +110,13 @@ public class CowEconomyHook extends AbstractEconomy {
   @Override
   public EconomyResponse withdrawPlayer(String playerName, String worldName, double amount) {
     if (amount < 0) {
-      return new EconomyResponse(0, this.getBalance(playerName), EconomyResponse.ResponseType.FAILURE, "Cannot withdraw negative funds.");
+      return new EconomyResponse(0, this.getBalance(playerName), EconomyResponse.ResponseType.FAILURE,
+          "Cannot withdraw negative funds.");
     }
 
     if (!has(playerName, amount)) {
-      return new EconomyResponse(0, this.getBalance(playerName), EconomyResponse.ResponseType.FAILURE, "Insufficient funds.");
+      return new EconomyResponse(0, this.getBalance(playerName), EconomyResponse.ResponseType.FAILURE,
+          "Insufficient funds.");
     }
 
     this.balances.put(playerName, (int) (this.getByName(playerName) - amount));
@@ -128,7 +132,8 @@ public class CowEconomyHook extends AbstractEconomy {
   @Override
   public EconomyResponse depositPlayer(String playerName, String worldName, double amount) {
     if (amount < 0) {
-      return new EconomyResponse(0, this.getBalance(playerName), EconomyResponse.ResponseType.FAILURE, "Cannot deposit negative funds.");
+      return new EconomyResponse(0, this.getBalance(playerName), EconomyResponse.ResponseType.FAILURE,
+          "Cannot deposit negative funds.");
     }
 
     this.balances.put(playerName, (int) (this.getByName(playerName) + amount));
@@ -138,7 +143,8 @@ public class CowEconomyHook extends AbstractEconomy {
 
   @Override
   public EconomyResponse createBank(String name, String player) {
-    return new EconomyResponse(0, this.getBalance(player), EconomyResponse.ResponseType.NOT_IMPLEMENTED, "Not implemented.");
+    return new EconomyResponse(0, this.getBalance(player), EconomyResponse.ResponseType.NOT_IMPLEMENTED,
+        "Not implemented.");
   }
 
   @Override

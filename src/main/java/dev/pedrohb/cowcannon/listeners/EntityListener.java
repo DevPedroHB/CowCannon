@@ -1,13 +1,5 @@
 package dev.pedrohb.cowcannon.listeners;
 
-import dev.pedrohb.cowcannon.configs.Settings;
-import dev.pedrohb.cowcannon.hooks.VaultHook;
-import dev.pedrohb.cowcannon.utils.Keys;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.event.ClickEvent;
-import net.kyori.adventure.text.event.HoverEvent;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.Entity;
@@ -19,6 +11,16 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.persistence.PersistentDataContainer;
 
+import dev.pedrohb.cowcannon.configs.Settings;
+import dev.pedrohb.cowcannon.hooks.VaultHook;
+import dev.pedrohb.cowcannon.utils.Keys;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
+
+@SuppressWarnings("deprecation")
 public final class EntityListener implements Listener {
 
   @EventHandler
@@ -53,15 +55,16 @@ public final class EntityListener implements Listener {
         .hoverEvent(HoverEvent.showText(Component.text("Hello, \nI am a cow!")))
         .append(Component.keybind("key.jump")
             .color(NamedTextColor.LIGHT_PURPLE)
-            .decoration(TextDecoration.BOLD, true))
-    );
+            .decoration(TextDecoration.BOLD, true)));
 
     if (player.getItemInHand().getItemMeta() != null) {
       try {
         final PersistentDataContainer entityContainer = entity.getPersistentDataContainer();
-        final PersistentDataContainer handItemContainer = player.getItemInHand().getItemMeta().getPersistentDataContainer();
+        final PersistentDataContainer handItemContainer = player.getItemInHand().getItemMeta()
+            .getPersistentDataContainer();
 
-        if (entity.getType() == Settings.getInstance().getExplodingType() && entityContainer.has(Keys.CUSTOM_COW) && handItemContainer.has(Keys.CUSTOM_BUCKET)) {
+        if (entity.getType() == Settings.getInstance().getExplodingType() && entityContainer.has(Keys.CUSTOM_COW)
+            && handItemContainer.has(Keys.CUSTOM_BUCKET)) {
           if (!player.hasPermission("cowcannon.cow.use")) {
             player.sendMessage("You don't have permission to milk cows ;)");
 
