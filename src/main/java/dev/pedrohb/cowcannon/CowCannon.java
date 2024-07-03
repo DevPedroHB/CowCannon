@@ -11,6 +11,7 @@ import org.mineacademy.fo.remain.CompMaterial;
 
 import dev.pedrohb.cowcannon.commands.Commands;
 import dev.pedrohb.cowcannon.configs.Configs;
+import dev.pedrohb.cowcannon.hooks.DiscordSRVHook;
 import dev.pedrohb.cowcannon.hooks.Hooks;
 import dev.pedrohb.cowcannon.listeners.Listeners;
 import dev.pedrohb.cowcannon.recipes.Recipes;
@@ -50,6 +51,10 @@ public final class CowCannon extends SimplePlugin {
   @Override
   public void onPluginStop() {
     Tasks.unregisterTasks(this);
+
+    if (getServer().getPluginManager().getPlugin("DiscordSRV") != null) {
+      DiscordSRVHook.unregister();
+    }
 
     getLogger().info("CowCannon has ben disabled.");
   }
