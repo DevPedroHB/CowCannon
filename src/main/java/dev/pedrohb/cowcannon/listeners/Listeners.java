@@ -10,6 +10,7 @@ public class Listeners {
     cowCannon.getServer().getPluginManager().registerEvents(new LaserPointerListener(), cowCannon);
     cowCannon.getServer().getPluginManager().registerEvents(new ChatListener(), cowCannon);
     cowCannon.getServer().getPluginManager().registerEvents(new PlayerListener(), cowCannon);
+    cowCannon.getServer().getPluginManager().registerEvents(new InventoryListener(), cowCannon);
 
     if (version >= 14) {
       cowCannon.getServer().getPluginManager().registerEvents(new CrawlListener(), cowCannon);

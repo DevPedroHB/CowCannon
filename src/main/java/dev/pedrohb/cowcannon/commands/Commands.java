@@ -16,6 +16,7 @@ public class Commands {
     cowCannon.getCommand("hologram").setExecutor(new HologramCommand());
     cowCannon.getCommand("vanish").setExecutor(new VanishCommand());
     cowCannon.getCommand("fly").setExecutor(new FlyCommand());
+    cowCannon.getCommand("trade").setExecutor(new TradeCommand());
 
     if (version >= 19) {
       cowCannon.getCommand("displayentity").setExecutor(new DisplayEntityCommand());

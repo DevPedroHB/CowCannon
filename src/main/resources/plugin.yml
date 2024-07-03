@@ -90,3 +90,9 @@ commands:
     aliases: [voar]
     permission: cowcannon.command.fly
     permission-message: "You do not have permission to run this command."
+  trade:
+    description: "Trade with a villager."
+    usage: "/trade"
+    aliases: [negociar]
+    permission: cowcannon.command.trade
+    permission-message: "You do not have permission to run this command."
