@@ -15,6 +15,7 @@ import dev.pedrohb.cowcannon.commands.CrawlCommand;
 import dev.pedrohb.cowcannon.commands.CustomItemCommand;
 import dev.pedrohb.cowcannon.commands.DisplayEntityCommand;
 import dev.pedrohb.cowcannon.commands.EconomyCommand;
+import dev.pedrohb.cowcannon.commands.FlyCommand;
 import dev.pedrohb.cowcannon.commands.GuiCommand;
 import dev.pedrohb.cowcannon.commands.HologramCommand;
 import dev.pedrohb.cowcannon.commands.LocaleCommand;
@@ -69,6 +70,7 @@ public final class CowCannon extends SimplePlugin {
     getCommand("tag").setExecutor(new TagCommand());
     getCommand("hologram").setExecutor(new HologramCommand());
     getCommand("vanish").setExecutor(new VanishCommand());
+    getCommand("fly").setExecutor(new FlyCommand());
 
     if (version >= 19) {
       getCommand("displayentity").setExecutor(new DisplayEntityCommand());

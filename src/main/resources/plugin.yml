@@ -84,3 +84,9 @@ commands:
     aliases: [v]
     permission: cowcannon.command.vanish
     permission-message: "You do not have permission to run this command."
+  fly:
+    description: "Makes me fly."
+    usage: "/fly"
+    aliases: [voar]
+    permission: cowcannon.command.fly
+    permission-message: "You do not have permission to run this command."
