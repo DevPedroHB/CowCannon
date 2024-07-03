@@ -9,40 +9,18 @@ import org.mineacademy.fo.menu.button.ButtonReturnBack;
 import org.mineacademy.fo.plugin.SimplePlugin;
 import org.mineacademy.fo.remain.CompMaterial;
 
-import dev.pedrohb.cowcannon.commands.ButterflyCommand;
-import dev.pedrohb.cowcannon.commands.CowCommand;
-import dev.pedrohb.cowcannon.commands.CrawlCommand;
-import dev.pedrohb.cowcannon.commands.CustomItemCommand;
-import dev.pedrohb.cowcannon.commands.DisplayEntityCommand;
-import dev.pedrohb.cowcannon.commands.EconomyCommand;
-import dev.pedrohb.cowcannon.commands.FlyCommand;
-import dev.pedrohb.cowcannon.commands.GuiCommand;
-import dev.pedrohb.cowcannon.commands.HologramCommand;
-import dev.pedrohb.cowcannon.commands.LocaleCommand;
-import dev.pedrohb.cowcannon.commands.TagCommand;
-import dev.pedrohb.cowcannon.commands.ToastCommand;
-import dev.pedrohb.cowcannon.commands.VanishCommand;
-import dev.pedrohb.cowcannon.configs.Settings;
-import dev.pedrohb.cowcannon.hooks.DiscordSRVHook;
+import dev.pedrohb.cowcannon.commands.Commands;
+import dev.pedrohb.cowcannon.configs.Configs;
 import dev.pedrohb.cowcannon.hooks.Hooks;
-import dev.pedrohb.cowcannon.models.Scheduler;
-import dev.pedrohb.cowcannon.recipes.CustomRecipe;
-import dev.pedrohb.cowcannon.tasks.ButterflyTask;
-import dev.pedrohb.cowcannon.tasks.LaserPointerTask;
-import dev.pedrohb.cowcannon.tasks.ScoreboardTask;
-import dev.pedrohb.cowcannon.tasks.TablistTask;
+import dev.pedrohb.cowcannon.listeners.Listeners;
+import dev.pedrohb.cowcannon.recipes.Recipes;
+import dev.pedrohb.cowcannon.tasks.Tasks;
 import lombok.Getter;
 
-@SuppressWarnings("deprecation")
 public final class CowCannon extends SimplePlugin {
 
   @Getter
   private static final Map<UUID, String> playerTags = new HashMap<>();
-
-  private Scheduler.Task butterflyTask;
-  private Scheduler.Task scoreboardTask;
-  private Scheduler.Task laserPointerTask;
-  private Scheduler.Task tablistTask;
 
   public static CowCannon getInstance() {
     return (CowCannon) SimplePlugin.getInstance();
@@ -57,49 +35,12 @@ public final class CowCannon extends SimplePlugin {
     final String[] versions = versionString.split("\\.");
     final int version = Integer.parseInt(versions[1]); // 20 in 1.20.6
 
-    // hooks
     Hooks.setupHooks();
-
-    // commands
-    getCommand("cow").setExecutor(new CowCommand());
-    getCommand("butterfly").setExecutor(new ButterflyCommand());
-    getCommand("customitem").setExecutor(new CustomItemCommand());
-    getCommand("gui").setExecutor(new GuiCommand());
-    getCommand("economy").setExecutor(new EconomyCommand());
-    getCommand("locale").setExecutor(new LocaleCommand());
-    getCommand("tag").setExecutor(new TagCommand());
-    getCommand("hologram").setExecutor(new HologramCommand());
-    getCommand("vanish").setExecutor(new VanishCommand());
-    getCommand("fly").setExecutor(new FlyCommand());
-
-    if (version >= 19) {
-      getCommand("displayentity").setExecutor(new DisplayEntityCommand());
-    }
-
-    if (version >= 14) {
-      getCommand("crawl").setExecutor(new CrawlCommand());
-    }
-
-    if (version >= 12) {
-      getCommand("toast").setExecutor(new ToastCommand());
-    }
-
-    // configs
-    Settings.getInstance().load();
-
-    // recipes
-    if (version >= 13) {
-      CustomRecipe.register();
-    }
-
-    // tasks
-    butterflyTask = Scheduler.runTimer(ButterflyTask.getInstance(), 0, 1);
-    laserPointerTask = Scheduler.runTimer(LaserPointerTask.getInstance(), 0, 1);
-    tablistTask = Scheduler.runTimer(TablistTask.getInstance(), 0, 20);
-
-    if (!Scheduler.isFolia()) {
-      scoreboardTask = Scheduler.runTimer(ScoreboardTask.getInstance(), 0, 20);
-    }
+    Configs.setupConfigs();
+    Commands.setupCommands(this, version);
+    Listeners.setupListeners(this, version);
+    Tasks.registerTasks();
+    Recipes.setupRecipes(version);
 
     ButtonReturnBack.setMaterial(CompMaterial.ARROW);
 
@@ -108,25 +49,7 @@ public final class CowCannon extends SimplePlugin {
 
   @Override
   public void onPluginStop() {
-    if (butterflyTask != null) {
-      butterflyTask.cancel();
-    }
-
-    if (scoreboardTask != null) {
-      scoreboardTask.cancel();
-    }
-
-    if (laserPointerTask != null) {
-      laserPointerTask.cancel();
-    }
-
-    if (tablistTask != null) {
-      tablistTask.cancel();
-    }
-
-    if (getServer().getPluginManager().getPlugin("DiscordSRV") != null) {
-      DiscordSRVHook.unregister();
-    }
+    Tasks.unregisterTasks(this);
 
     getLogger().info("CowCannon has ben disabled.");
   }
