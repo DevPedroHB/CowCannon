@@ -96,3 +96,9 @@ commands:
     aliases: [negociar]
     permission: cowcannon.command.trade
     permission-message: "You do not have permission to run this command."
+  region:
+    description: "Test WorldGuard region."
+    usage: "/region <pos1|pos2|save <name>|paste <name>>"
+    aliases: [rg]
+    permission: cowcannon.command.region
+    permission-message: "You do not have permission to run this command."
