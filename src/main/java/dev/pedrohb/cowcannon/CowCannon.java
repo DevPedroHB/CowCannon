@@ -20,6 +20,7 @@ import dev.pedrohb.cowcannon.commands.HologramCommand;
 import dev.pedrohb.cowcannon.commands.LocaleCommand;
 import dev.pedrohb.cowcannon.commands.TagCommand;
 import dev.pedrohb.cowcannon.commands.ToastCommand;
+import dev.pedrohb.cowcannon.commands.VanishCommand;
 import dev.pedrohb.cowcannon.configs.Settings;
 import dev.pedrohb.cowcannon.hooks.DiscordSRVHook;
 import dev.pedrohb.cowcannon.hooks.Hooks;
@@ -67,6 +68,7 @@ public final class CowCannon extends SimplePlugin {
     getCommand("locale").setExecutor(new LocaleCommand());
     getCommand("tag").setExecutor(new TagCommand());
     getCommand("hologram").setExecutor(new HologramCommand());
+    getCommand("vanish").setExecutor(new VanishCommand());
 
     if (version >= 19) {
       getCommand("displayentity").setExecutor(new DisplayEntityCommand());

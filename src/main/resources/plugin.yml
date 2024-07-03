@@ -78,3 +78,9 @@ commands:
     aliases: [holo]
     permission: cowcannon.command.hologram
     permission-message: "You do not have permission to run this command."
+  vanish:
+    description: "Vanish a player."
+    usage: "/vanish <player>"
+    aliases: [v]
+    permission: cowcannon.command.vanish
+    permission-message: "You do not have permission to run this command."
