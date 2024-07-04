@@ -12,6 +12,7 @@ public class Listeners {
     cowCannon.getServer().getPluginManager().registerEvents(new PlayerListener(), cowCannon);
     cowCannon.getServer().getPluginManager().registerEvents(new InventoryListener(), cowCannon);
     cowCannon.getServer().getPluginManager().registerEvents(new AiListener(), cowCannon);
+    cowCannon.getServer().getPluginManager().registerEvents(new RegionListener(), cowCannon);
 
     if (version >= 14) {
       cowCannon.getServer().getPluginManager().registerEvents(new CrawlListener(), cowCannon);
