@@ -7,15 +7,39 @@ import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import dev.pedrohb.cowcannon.CowCannon;
 import dev.pedrohb.cowcannon.events.CrawlEvent;
 import dev.pedrohb.cowcannon.utils.Keys;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.event.HoverEvent;
 
 @SuppressWarnings("deprecation")
 public class PlayerListener implements Listener {
+
+  @EventHandler
+  public void onJoin(PlayerJoinEvent event) {
+    Component message = Component.text("Player ")
+        .append(event.getPlayer().displayName())
+        .append(Component.text(" has joined the game."))
+        .hoverEvent(HoverEvent.showText(Component.text("some text")));
+
+    event.joinMessage(message);
+  }
+
+  @EventHandler
+  public void onQuit(PlayerQuitEvent event) {
+    Component message = Component.text("Player ")
+        .append(event.getPlayer().displayName())
+        .append(Component.text(" has left the game."))
+        .hoverEvent(HoverEvent.showText(Component.text("some text")));
+
+    event.quitMessage(message);
+  }
 
   @EventHandler
   public void onCrawl(CrawlEvent event) {

@@ -15,6 +15,7 @@ public class Tasks {
     tasks.add(Scheduler.runTimer(LaserPointerTask.getInstance(), 0, 1));
     tasks.add(Scheduler.runTimer(TablistTask.getInstance(), 0, 20));
     tasks.add(Scheduler.runTimer(ItemPickupTask.getInstance(), 0, 2));
+    tasks.add(Scheduler.runTimer(MessageBroadcasterTask.getInstance(), 0, (20 * 60) * 1)); // 1 minuto
 
     if (!Scheduler.isFolia()) {
       tasks.add(Scheduler.runTimer(ScoreboardTask.getInstance(), 0, 20));
