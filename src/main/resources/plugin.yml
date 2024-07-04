@@ -11,6 +11,7 @@ softdepend:
   - Vault
 libraries:
   - org.jsoup:jsoup:1.17.2
+  - com.theokanning.openai-gpt3-java:service:0.18.2
 commands:
   cow:
     description: "Spawn an exploding cow."
@@ -101,4 +102,10 @@ commands:
     usage: "/region <pos1|pos2|save <name>|paste <name>>"
     aliases: [rg]
     permission: cowcannon.command.region
+    permission-message: "You do not have permission to run this command."
+  ai:
+    description: "Test OpenAI GPT-3."
+    usage: "/ai <name> <role>"
+    aliases: [ia]
+    permission: cowcannon.command.ai
     permission-message: "You do not have permission to run this command."

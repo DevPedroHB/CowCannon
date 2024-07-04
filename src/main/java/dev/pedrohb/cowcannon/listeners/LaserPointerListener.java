@@ -31,7 +31,7 @@ public final class LaserPointerListener implements Listener {
     ItemStack hand = player.getItemInHand();
     int distance = 100;
 
-    if (player.hasPermission("cowcannon.laserpointer")) {
+    if (!player.hasPermission("cowcannon.laserpointer")) {
       return;
     }
 

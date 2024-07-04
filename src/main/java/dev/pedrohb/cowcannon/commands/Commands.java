@@ -18,6 +18,7 @@ public class Commands {
     cowCannon.getCommand("fly").setExecutor(new FlyCommand());
     cowCannon.getCommand("trade").setExecutor(new TradeCommand());
     cowCannon.getCommand("region").setExecutor(new RegionCommand());
+    cowCannon.getCommand("ai").setExecutor(new AiCommand());
 
     if (version >= 19) {
       cowCannon.getCommand("displayentity").setExecutor(new DisplayEntityCommand());
