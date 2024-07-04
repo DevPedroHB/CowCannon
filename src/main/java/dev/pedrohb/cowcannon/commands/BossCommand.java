@@ -7,7 +7,7 @@ import dev.pedrohb.cowcannon.commands.annotations.Parameter;
 @AutoRegister
 public final class BossCommand extends AnnotatedCommand {
 
-  protected BossCommand() {
+  public BossCommand() {
     super("boss");
   }
 

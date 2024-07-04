@@ -39,6 +39,8 @@ public class PlayerListener implements Listener {
         .hoverEvent(HoverEvent.showText(Component.text("some text")));
 
     event.quitMessage(message);
+
+    // TODO: homework
   }
 
   @EventHandler
