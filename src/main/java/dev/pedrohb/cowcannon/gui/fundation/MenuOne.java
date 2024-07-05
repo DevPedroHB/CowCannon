@@ -1,5 +1,7 @@
 package dev.pedrohb.cowcannon.gui.fundation;
 
+import java.util.List;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
@@ -8,6 +10,9 @@ import org.mineacademy.fo.menu.Menu;
 import org.mineacademy.fo.menu.button.Button;
 import org.mineacademy.fo.menu.model.ItemCreator;
 import org.mineacademy.fo.remain.CompMaterial;
+import org.mineacademy.fo.slider.ColoredTextSlider;
+import org.mineacademy.fo.slider.ItemSlider;
+import org.mineacademy.fo.slider.Slider;
 
 @SuppressWarnings("unused")
 public final class MenuOne extends Menu {
@@ -17,20 +22,29 @@ public final class MenuOne extends Menu {
 
   public MenuOne() {
     this.setSize(9 * 3);
-    this.setTitle("&4My First Animated Menu");
-    this.setSlotNumbersVisible();
+    this.setTitle("Animated Menu");
 
-    this.currentTimeButton = new Button(this.getCenterSlot()) {
+    this.currentTimeButton = new Button() {
+      int ticksLived = 0;
+      boolean toggle = false;
+
       @Override
-      public void onClickedInMenu(Player player, Menu menu, ClickType click) {
-        animateTitle("&2Hello There");
+      public void onClickedInMenu(Player player, Menu menu, ClickType clickType) {
         new AnotherPage().displayTo(player);
       }
 
       @Override
       public ItemStack getItem() {
+        this.ticksLived++;
+
+        if ((this.ticksLived % 20) == 0) { // 20 / 20 = 1.00
+          this.ticksLived = 0;
+
+          this.toggle = !this.toggle;
+        }
+
         return ItemCreator.of(
-            CompMaterial.CLOCK,
+            this.toggle ? CompMaterial.RECOVERY_COMPASS : CompMaterial.COMPASS,
             "Current Time",
             "",
             "Value: " + TimeUtil.getFormattedDate())
@@ -40,14 +54,43 @@ public final class MenuOne extends Menu {
 
       @Override
       public int getSlot() {
-        return getCenterSlot();
+        return getSize() - 5;
       }
     };
   }
 
   @Override
   protected void onPostDisplay(Player viewer) {
-    this.animate(20, this::redrawButtons);
+    this.animate(1, this::redrawButtons);
+
+    final String menuTitle = "Animated Menu";
+    final Slider<String> textSlider = ColoredTextSlider.from(menuTitle)
+        .width(10)
+        .primaryColor("&6&l")
+        .secondaryColor("&0&l");
+
+    this.animateAsync(2, () -> setTitle(textSlider.next()));
+
+    final Slider<List<ItemStack>> itemsSlider = ItemSlider.from(
+        ItemCreator.of(CompMaterial.GRAY_STAINED_GLASS_PANE, ""),
+        ItemCreator.of(CompMaterial.NETHER_STAR, "Slided Item!"))
+        .width(9);
+
+    this.animate(10, new MenuRunnable() {
+      @Override
+      public void run() {
+        final List<ItemStack> items = itemsSlider.next();
+
+        for (int i = 0; i < items.size(); i++) {
+          setItem(9 + i, items.get(i));
+        }
+
+        // If the slider has moved the start to the last slot, cancel the animation
+        if (items.get(items.size() - 1).getType() == CompMaterial.NETHER_STAR.getMaterial()) {
+          this.cancel();
+        }
+      }
+    });
   }
 
   private final class AnotherPage extends Menu {
