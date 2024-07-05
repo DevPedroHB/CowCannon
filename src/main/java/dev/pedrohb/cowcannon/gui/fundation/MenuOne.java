@@ -2,20 +2,26 @@ package dev.pedrohb.cowcannon.gui.fundation;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.inventory.ItemStack;
 import org.mineacademy.fo.TimeUtil;
 import org.mineacademy.fo.menu.Menu;
 import org.mineacademy.fo.menu.button.Button;
+import org.mineacademy.fo.menu.button.StartPosition;
+import org.mineacademy.fo.menu.button.annotation.Position;
 import org.mineacademy.fo.menu.model.ItemCreator;
+import org.mineacademy.fo.menu.model.MenuClickLocation;
 import org.mineacademy.fo.remain.CompMaterial;
 import org.mineacademy.fo.slider.ColoredTextSlider;
 import org.mineacademy.fo.slider.ItemSlider;
 import org.mineacademy.fo.slider.Slider;
 
 @SuppressWarnings("unused")
-public final class MenuOne extends Menu {
+public class MenuOne extends Menu {
 
   // @Position(start = StartPosition.CENTER, value = -2)
   private final Button currentTimeButton;
@@ -93,26 +99,84 @@ public final class MenuOne extends Menu {
     });
   }
 
-  private final class AnotherPage extends Menu {
+  // @Override
+  // public ItemStack getItemAt(int slot) {
+  // YamlConfiguration bukkitConfig; // TODO you need to create a config in
+  // another class and then link to it here
 
+  // if (bukkitConfig.isSet("inventory." + slot)) {
+  // return bukkitConfig.getItemStack("inventory." + slot);
+  // }
+
+  // if (slot == 0) {
+  // return ItemCreator.of(CompMaterial.RED_STAINED_GLASS_PANE).name(" ").make();
+  // }
+
+  // return super.getItemAt(slot);
+  // }
+
+  @Override
+  protected boolean isActionAllowed(MenuClickLocation location, int slot, @Nullable ItemStack clicked,
+      @Nullable ItemStack cursor, InventoryAction action) {
+    if (action == InventoryAction.MOVE_TO_OTHER_INVENTORY) {
+      return false;
+    }
+
+    if (slot < this.getSize() - 9) { // protect the last row with return back and info buttons
+      return true;
+    }
+
+    return super.isActionAllowed(location, slot, clicked, cursor, action);
+  }
+
+  // @Override
+  // protected void onMenuClose(Player player, Inventory inventory) {
+  // YamlConfig config; // TODO you need to create a config in another class and
+  // then link to it here
+  // ItemStack[] content = inventory.getContents();
+
+  // for (int i = 0; i < content.length; i++) {
+  // ItemStack item = content[i];
+
+  // if (item != null) {
+  // config.set("inventory." + i, item);
+  // }
+  // }
+
+  // config.save();
+  // }
+
+  @Override
+  protected String[] getInfo() {
+    return new String[] {
+        "This is the first menu we",
+        "create using the Foundation",
+        "framework, yay!"
+    };
+  }
+
+  private class AnotherPage extends Menu {
+
+    @Position(start = StartPosition.CENTER)
     private final Button setDayButton;
 
     private AnotherPage() {
-      super(MenuOne.this);
+      super(MenuOne.this); // add ", true" to make a new instance of parent when returning to it
 
       this.setTitle("Another menu page");
 
-      this.setDayButton = new Button(this.getCenterSlot()) {
+      this.setDayButton = new Button() {
         @Override
-        public void onClickedInMenu(Player player, Menu menu, ClickType click) {
+        public void onClickedInMenu(Player player, Menu menu, ClickType clickType) {
           player.getWorld().setTime(1000);
 
-          animateTitle("Time set to day.");
+          animateTitle("Time set to day!");
         }
 
         @Override
         public ItemStack getItem() {
-          return ItemCreator.of(CompMaterial.PLAYER_HEAD)
+          return ItemCreator.of(
+              CompMaterial.PLAYER_HEAD)
               .skullOwner(getViewer().getName())
               .make();
         }
