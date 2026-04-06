@@ -1,46 +1,39 @@
 # !-----------------------------------------------------------------------------------------------!
-#                       Welcome to the main configuration of ${project.name}
+#                       Bem-vindo à configuração principal do ${project.name}
 # !-----------------------------------------------------------------------------------------------!
 #
-#    This is the main plugin's settings class. You can use SimpleSettings to load values from it,
-#    and update it automatically.
+#    Esta é a classe de configurações principal do plugin. Você pode usar o SimpleSettings para carregar valores dela,
+#    e atualizá-la automaticamente.
 #
-#    For support and documentation, please visit:
+#    Para suporte e documentação, por favor visite:
 #    - https://github.com/${author}/${project.name}/wiki
 #
 # !-----------------------------------------------------------------------------------------------!
 #
-#    1) COLOR CODES are supported with the '&' character.
-#       - For usage, see http://minecraftwiki.net/wiki/Formatting_codes
-#       - When you use them, place quotes around the message like this: "Hello &cworld."
-#       - To use HEX colors, use #123456 syntax: "Hello #123456world."
+#    1) CÓDIGOS DE COR são suportados com o caractere '&'.
+#       - Para uso, veja http://minecraftwiki.net/wiki/Formatting_codes
+#       - Quando você os usar, coloque aspas ao redor da mensagem assim: "Hello &cworld."
+#       - Para usar cores HEX, use a sintaxe #123456: "Hello #123456world."
 #
-#    2) TO HIDE any message, set it to 'none'.
+#    2) PARA OCULTAR qualquer mensagem, defina como 'none'.
 #
-#    3) For UNICODE CHARACTERS (smileys, symbols, ..), save the file in UTF-8 encoding. See
+#    3) Para CARACTERES UNICODE (emojis, símbolos, ..), salve o arquivo em codificação UTF-8. Veja
 #       - https://github.com/${author}/${project.name}/wiki/Use-Right-Encoding
 #
-#    4) JSON is supported.
-#       - For usage, see https://github.com/${author}/${project.name}/wiki/JSON
+#    4) JSON é suportado.
+#       - Para uso, veja https://github.com/${author}/${project.name}/wiki/JSON
 #
-#    5) WHITELISTS can be turned into blacklists, by putting "@blacklist" on the first line.
-#       - Doing such, filters will only apply for messages in those lists.
+#    5) LISTAS DE PERMISSÃO podem ser transformadas em listas de bloqueio, colocando "@blacklist" na primeira linha.
+#       - Ao fazer isso, os filtros serão aplicados apenas para mensagens nessas listas.
 #
-#    PS: Everything above applies for all files in ${project.name}/ folder.
+#    PS: Tudo acima se aplica a todos os arquivos na pasta ${project.name}/.
 #
 # !-----------------------------------------------------------------------------------------------!
 
 # -------------------------------------------------------------------------------------------------
-# Example of a section
-# -------------------------------------------------------------------------------------------------
-Example:
-  # An example of a config key
-  Sample_Flag: true
-
-# -------------------------------------------------------------------------------------------------
-# The formats used in the {date}, {date_short}, {date_month} and {location}.
+# Os formatos usados em {date}, {date_short}, {date_month} e {location}.
 #
-# See the link below to learn how to edit the date format:
+# Veja o link abaixo para aprender como editar o formato da data:
 # https://docs.oracle.com/javase/8/docs/api/java/text/SimpleDateFormat.html
 # -------------------------------------------------------------------------------------------------
 Date_Format: "dd.MM.yyyy HH:mm:ss"
@@ -49,40 +42,40 @@ Date_Format_Month: "dd.MM HH:mm"
 Location_Format: "{world} {x}, {y}, {z}"
 
 # -------------------------------------------------------------------------------------------------
-# What commands should trigger the main plugin command group?
+# Quais comandos devem acionar o grupo de comandos principal do plugin?
 #
-# * THE FIRST ALIAS IS THE MAIN LABEL, YOU CAN CHANGE IT BUT DO NOT REMOVE IT. *
-# * EXAMPLE: [boss, b] will trigger your main command from "/boss" or "/b" *
+# * O PRIMEIRO APELIDO É O LABEL PRINCIPAL, VOCÊ PODE ALTERÁ-LO MAS NÃO O REMOVA. *
+# * EXEMPLO: [boss, b] acionará seu comando principal a partir de "/boss" ou "/b" *
 # -------------------------------------------------------------------------------------------------
 Command_Aliases: [cowcannon, cc]
 
 # -------------------------------------------------------------------------------------------------
-# What language should we use for messages? If it exists, the language file will be copied
-# to your messages/ folder where you can edit it.
+# Qual idioma devemos usar para as mensagens? Se existir, o arquivo de idioma será copiado
+# para sua pasta messages/, onde você poderá editá-lo.
 # -------------------------------------------------------------------------------------------------
-Locale: en
+Locale: pt
 
 # -------------------------------------------------------------------------------------------------
-# The prefix used in front of most chat or console messages. You can manually use it with
-# {plugin_prefix} variable anywhere.
+# O prefixo usado na frente da maioria das mensagens no chat ou console. Você pode usá-lo manualmente com
+# a variável {plugin_prefix} em qualquer lugar.
 # -------------------------------------------------------------------------------------------------
 Prefix: "&8[&c${project.name}&8]&7"
 
 # -------------------------------------------------------------------------------------------------
-# Time of some plugin's operations is measured. You can also use the LagCatcher class to invoke
-# this feature. We log a console message if an operation takes over the time below (milliseconds).
-# Set to -1 to disable.
+# O tempo de algumas operações do plugin é medido. Você também pode usar a classe LagCatcher para invocar
+# este recurso. Registramos uma mensagem no console se uma operação demorar mais do que o tempo abaixo (milissegundos).
+# Defina como -1 para desativar.
 # -------------------------------------------------------------------------------------------------
 Log_Lag_Over_Milis: 100
 
 # -------------------------------------------------------------------------------------------------
-# List of section names that will print informative messages about this plugin's features.
-# The Debugger class utilizes this key and will only print messages for sections enabled below.
+# Lista de nomes de seções que exibirão mensagens informativas sobre os recursos deste plugin.
+# A classe Debugger utiliza esta chave e só exibirá mensagens para as seções ativadas abaixo.
 # -------------------------------------------------------------------------------------------------
 Debug: []
 
 # -------------------------------------------------------------------------------------------------
-# Do not change this value, otherwise it will corrupt your plugin installation!
-# NB: Don't forget to keep this up-to-date with the getConfigVersion method in your Settings class.
+# Não altere este valor, caso contrário, isso corromperá a instalação do seu plugin!
+# NB: Não se esqueça de manter isso atualizado com o método getConfigVersion em sua classe Settings.
 # -------------------------------------------------------------------------------------------------
 Version: 1

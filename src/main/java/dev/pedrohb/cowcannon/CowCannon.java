@@ -24,10 +24,8 @@ public final class CowCannon extends SimplePlugin {
 		// Uncomment to load variables
 		// Variable.loadVariables();
 
-		//
 		// Add your own plugin parts to load automatically here
 		// Please see @AutoRegister for parts you do not have to register manually
-		//
 	}
 
 	@Override

@@ -89,6 +89,22 @@ Commands:
   Perms_No: "&cnão"
   Region_Set_Primary: "Definir o ponto primário da região."
   Region_Set_Secondary: "Definir o ponto secundário da região."
+  # Variáveis:
+  #   {label} - Comando principal
+  #   {ages} ou {0} - Opções de idade
+  #   {available} - Opções disponíveis
+  Cow:
+    Description: "Gerencie vacas explosivas."
+    Usage:
+      - "&7/{label} spawn [{ages}] &8- &fGera uma vaca explosiva."
+      - "&7/{label} info &8- &fVerifica se a vaca observada é explosiva."
+    Invalid_Age: "&cIdade inválida. Utilize uma das opções: &a{available}&c."
+    Cow_Name: "&cVaca Explosiva"
+    Spawn_Success: "&aVaca explosiva gerada com sucesso!"
+    Must_Look_At_Cow: "&cVocê precisa estar olhando para uma vaca."
+    Info:
+      Exploding: "&7Esta vaca é &aexplosiva&7."
+      Not_Exploding: "&7Esta vaca &cnão é explosiva&7."
 
 # -------------------------------------------------------------------------------------------------
 # Mensagens relacionadas ao paginador que divide a ajuda do comando em várias páginas
@@ -173,7 +189,7 @@ Prefix:
 # Diversos
 # -------------------------------------------------------------------------------------------------
 None: "Nenhum"
-Server_Prefix: "[LunaryMC]"
+Server_Prefix: "[${project.name}]"
 Console_Name: "Console"
 
 # -------------------------------------------------------------------------------------------------
